@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from './book.model';
 import { BookSearchService } from './book-search.service';
-import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CartStoreService } from '../cart/cart.store';
 
 @Component({
   selector: 'app-book-search',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './book-search.component.html',
   styleUrls: ['./book-search.component.css']
 })
+
 export class BookSearchComponent implements OnInit {
   allBooks: Book[] = [];
   filteredBooks: Book[] = [];
@@ -27,7 +28,7 @@ export class BookSearchComponent implements OnInit {
   total = 0;
   totalPages = 1;
 
-  constructor(private bookService: BookSearchService) {}
+  constructor(private bookService: BookSearchService, public cartStore: CartStoreService) {}
 
   ngOnInit(): void {
     this.bookService.getAllBooks().subscribe((books) => {
@@ -40,7 +41,7 @@ export class BookSearchComponent implements OnInit {
     this.filteredBooks = this.allBooks.filter(book => {
       const matchesTitle = this.filters.title ? book.titulo.toLowerCase().includes(this.filters.title.toLowerCase()) : true;
       const matchesAuthor = this.filters.author ? book.autor.toLowerCase().includes(this.filters.author.toLowerCase()) : true;
-      const matchesYear = this.filters.year ? String(book['año ']).includes(this.filters.year) : true;
+      const matchesYear = this.filters.year ? String(book['año']).includes(this.filters.year) : true;
       const matchesCategory = this.filters.category ? book.categoria === this.filters.category : true;
       return matchesTitle && matchesAuthor && matchesYear && matchesCategory;
     });
@@ -86,6 +87,10 @@ export class BookSearchComponent implements OnInit {
       this.page--;
       this.paginate();
     }
+  }
+
+  addToCart(book: Book): void {
+    this.cartStore.addToCart(book);
   }
 
   get pages(): number[] {

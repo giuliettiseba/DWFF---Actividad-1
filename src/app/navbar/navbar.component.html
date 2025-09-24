@@ -1,11 +1,21 @@
-<nav class="navbar">
-  <div class="navbar-brand">
-    <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="BookStore Logo" class="navbar-logo">
-    <span class="navbar-title">BookStore</span>
-  </div>
-  <div class="navbar-links">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
-    <a routerLink="/buscar" routerLinkActive="active">Buscar Libros</a>
-    <a routerLink="/carrito" routerLinkActive="active">Carrito</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+  <div class="container" style="max-width: 1200px;">
+    <a class="navbar-brand d-flex align-items-center" routerLink="/">
+      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="BookStore Logo" class="me-2" style="height: 40px;">
+      <span class="fw-bold fs-4">BookStore</span>
+    </a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/buscar" routerLinkActive="active">Buscar Libros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/carrito" routerLinkActive="active">Carrito</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

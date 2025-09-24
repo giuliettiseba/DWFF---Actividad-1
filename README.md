@@ -1,59 +1,70 @@
-# Actividad1
+# Actividad 1 (individual) — Aplicación con Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.2.
+Esta actividad se encuadra dentro del proyecto transversal del máster: **Librería universitaria y espacio multifuncional** que combina venta de libros, zona de coworking y cafetería.
 
-## Development server
+## Objetivos
 
-To start a local development server, run:
+El objetivo de esta actividad es crear una aplicación web con Angular que implemente la funcionalidad de venta de libros de la librería Nexus. El usuario podrá navegar por las distintas páginas de este sitio web.
 
-```bash
-ng serve
-```
+## Pautas de elaboración
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+En esta actividad, deberás:
 
-## Code scaffolding
+- Crear una aplicación con Angular.
+- Crear al menos tres páginas dentro del proyecto:
+  - Landing page
+  - Página de búsqueda de libros (con filtros por título, autor, año o categoría)
+  - Página de carrito (donde se ven los libros seleccionados)
+- Incluir tres enlaces de navegación presentes en todas las páginas.
+- Las páginas deben tener contenido, dando la sensación de ser un producto acabado. Cada una debe incluir:
+  - Varios párrafos de texto
+  - Imágenes
+  - Filas y columnas de contenido
+- Todo el contenido debe transmitir la sensación de estar en un e-commerce de libros, cuidadosamente maquetado, con una columna central de 1200px de ancho.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Extensión y formato
 
-```bash
-ng generate component component-name
-```
+- Extensión máxima: tres páginas de Angular.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Rúbrica
 
-```bash
-ng generate --help
-```
+| Criterio    | Descripción                                                                 | Puntos | Peso (%) |
+|-------------|-----------------------------------------------------------------------------|--------|----------|
+| 1           | Crear la aplicación utilizando la herramienta de generación vista en clase   | 1      | 10%      |
+| 2           | Crear al menos tres páginas                                                 | 2      | 20%      |
+| 3           | Crear los enlaces de navegación                                             | 1      | 10%      |
+| 4           | Añadir contenido que transmita la sensación de e-commerce de libros         | 3      | 30%      |
+| 5           | No adjuntar la carpeta node_modules y compartir el código en un fichero     | 1      | 10%      |
+| 6           | Código de enrutamiento en un fichero independiente                          | 1      | 10%      |
+| 7           | Respetar la nomenclatura correcta de los ficheros                          | 1      | 10%      |
+| **Total**   |                                                                             | **10** | **100%** |
 
-## Building
+---
 
-To build the project run:
+## Instrucciones técnicas
 
-```bash
-ng build
-```
+- Para iniciar el servidor de desarrollo:
+  ```bash
+  ng serve
+  ```
+- Accede a la aplicación en `http://localhost:4200/`.
+- Para generar componentes:
+  ```bash
+  ng generate component nombre-componente
+  ```
+- Para construir el proyecto:
+  ```bash
+  ng build
+  ```
+- Para ejecutar tests unitarios:
+  ```bash
+  ng test
+  ```
+- Para pruebas end-to-end:
+  ```bash
+  ng e2e
+  ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**No adjuntar la carpeta `node_modules`. Compartir el código en un fichero a través de la plataforma de la universidad.**

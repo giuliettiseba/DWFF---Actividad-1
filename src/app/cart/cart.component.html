@@ -1,51 +1,90 @@
-<div class="cart-hero">
-  <div class="cart-hero-bg"></div>
-  <div class="central-column cart-hero-content">
-    <h1><span class="highlight">Carrito de Compras</span></h1>
-    <p class="subtitle">Revisa tus libros seleccionados y finaliza tu compra fácilmente.</p>
+<div class="container" style="max-width: 1200px; margin: 0 auto;">
+  <div class="row align-items-center py-4 mb-4 bg-light rounded shadow">
+    <div class="col text-center">
+      <h1 class="display-5"><span class="text-primary">Carrito de Compras</span></h1>
+      <p class="lead">Revisa tus libros seleccionados y finaliza tu compra fácilmente.</p>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-md-8 mx-auto">
+      <p>Estos son los libros que has seleccionado para comprar. Puedes revisar los detalles, eliminar algún libro o finalizar tu compra.</p>
+      <p>Recuerda que puedes agregar más libros desde la página de búsqueda. ¡Disfruta de la mejor selección de literatura!</p>
+    </div>
+  </div>
+  <div class="row">
+    <ng-container *ngIf="cartItems$ | async as cartItems">
+      <div class="col-md-4 mb-4" *ngFor="let item of cartItems">
+        <div class="card h-100">
+          <img [src]="item.imagen" alt="Libro carrito" class="card-img-top" style="height: 200px; object-fit: contain; background: #f8f9fa;">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.titulo }}</h5>
+            <p class="card-text mb-1"><strong>Autor:</strong> {{ item.autor }}</p>
+            <p class="card-text mb-1"><strong>Año:</strong> {{ item['año '] }} | <strong>Categoría:</strong> {{ item.categoria }}</p>
+            <button class="btn btn-danger w-100" (click)="removeFromCart(item.id)"><span class="me-2">🗑️</span>Eliminar</button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="cartItems.length === 0" class="col-12">
+        <div class="alert alert-warning text-center">No hay libros en el carrito.</div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="row justify-content-end mb-4">
+    <div class="col-md-4">
+      <div class="d-flex justify-content-between align-items-center border rounded p-3 mb-2">
+        <span class="fw-bold">Total:</span>
+        <span class="fs-5">$60.00</span>
+      </div>
+      <button class="btn btn-primary w-100" (click)="openPaymentDialog()">Finalizar compra</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 mx-auto text-center">
+      <div class="alert alert-info d-flex align-items-center justify-content-center">
+        <span class="me-2">❓</span>
+        <span>¿Tienes dudas sobre el proceso de compra? Nuestro equipo está disponible para ayudarte en todo momento.</span>
+      </div>
+    </div>
   </div>
 </div>
-<div class="central-column">
-  <p>Estos son los libros que has seleccionado para comprar. Puedes revisar los detalles, eliminar algún libro o finalizar tu compra.</p>
-  <p>Recuerda que puedes agregar más libros desde la página de búsqueda. ¡Disfruta de la mejor selección de literatura!</p>
-  <div class="cart-grid">
-    <div class="cart-card">
-      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba" alt="Libro carrito" class="cart-img">
-      <div class="cart-info">
-        <h3>El Principito</h3>
-        <p class="cart-meta">Autor: Antoine de Saint-Exupéry</p>
-        <p class="cart-meta">Año: 1943 | Categoría: Infantil</p>
-        <button class="remove-btn"><span class="remove-icon">🗑️</span> Eliminar</button>
+
+<!-- Modal de pago -->
+<div *ngIf="showPaymentDialog">
+  <div class="modal d-block" tabindex="-1" role="dialog" aria-modal="true" style="background: rgba(0,0,0,0.4);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Pago con tarjeta de crédito</h5>
+          <button type="button" class="btn-close" aria-label="Cerrar" (click)="closePaymentDialog()"></button>
+        </div>
+        <form (ngSubmit)="submitPayment()" autocomplete="off">
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label">Nombre en la tarjeta</label>
+              <input type="text" class="form-control" [(ngModel)]="paymentForm.name" name="name" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Número de tarjeta</label>
+              <input type="text" class="form-control" maxlength="19" [(ngModel)]="paymentForm.number" name="number" required placeholder="1234 5678 9012 3456">
+            </div>
+            <div class="row">
+              <div class="col-6 mb-3">
+                <label class="form-label">Expiración (MM/AA)</label>
+                <input type="text" class="form-control" maxlength="5" [(ngModel)]="paymentForm.expiry" name="expiry" required placeholder="MM/AA">
+              </div>
+              <div class="col-6 mb-3">
+                <label class="form-label">CVV</label>
+                <input type="text" class="form-control" maxlength="4" [(ngModel)]="paymentForm.cvv" name="cvv" required placeholder="123">
+              </div>
+            </div>
+            <div *ngIf="paymentError" class="alert alert-danger py-2">{{ paymentError }}</div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closePaymentDialog()">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Pagar</button>
+          </div>
+        </form>
       </div>
     </div>
-    <div class="cart-card">
-      <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353" alt="Libro carrito" class="cart-img">
-      <div class="cart-info">
-        <h3>Cien años de soledad</h3>
-        <p class="cart-meta">Autor: Gabriel García Márquez</p>
-        <p class="cart-meta">Año: 1967 | Categoría: Novela</p>
-        <button class="remove-btn"><span class="remove-icon">🗑️</span> Eliminar</button>
-      </div>
-    </div>
-    <div class="cart-card">
-      <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66" alt="Libro carrito" class="cart-img">
-      <div class="cart-info">
-        <h3>Breve historia del tiempo</h3>
-        <p class="cart-meta">Autor: Stephen Hawking</p>
-        <p class="cart-meta">Año: 1988 | Categoría: Ciencia</p>
-        <button class="remove-btn"><span class="remove-icon">🗑️</span> Eliminar</button>
-      </div>
-    </div>
-  </div>
-  <div class="cart-total-section">
-    <div class="cart-total">
-      <span class="total-label">Total:</span>
-      <span class="total-value">$60.00</span>
-    </div>
-    <button class="checkout-btn">Finalizar compra</button>
-  </div>
-  <div class="cart-help">
-    <span class="help-icon">❓</span>
-    <p>¿Tienes dudas sobre el proceso de compra? Nuestro equipo está disponible para ayudarte en todo momento.</p>
   </div>
 </div>
