@@ -7,26 +7,35 @@
   </div>
   <div class="row mb-4">
     <div class="col-md-8 mx-auto">
-      <p>Estos son los libros que has seleccionado para comprar. Puedes revisar los detalles, eliminar algún libro o finalizar tu compra.</p>
-      <p>Recuerda que puedes agregar más libros desde la página de búsqueda. ¡Disfruta de la mejor selección de literatura!</p>
+      <p>Estos son los libros que has seleccionado para comprar. Puedes revisar los detalles, eliminar algún libro o
+        finalizar tu compra.</p>
+      <p>Recuerda que puedes agregar más libros desde la página de búsqueda. ¡Disfruta de la mejor selección de
+        literatura!</p>
     </div>
   </div>
   <div class="row">
     <ng-container *ngIf="cartItems$ | async as cartItems">
-      <div class="col-md-4 mb-4" *ngFor="let item of cartItems">
-        <div class="card h-100">
-          <img [src]="item.imagen" alt="Libro carrito" class="card-img-top" style="height: 200px; object-fit: contain; background: #f8f9fa;">
-          <div class="card-body">
-            <h5 class="card-title">{{ item.titulo }}</h5>
-            <p class="card-text mb-1"><strong>Autor:</strong> {{ item.autor }}</p>
-            <p class="card-text mb-1"><strong>Año:</strong> {{ item['año '] }} | <strong>Categoría:</strong> {{ item.categoria }}</p>
-            <button class="btn btn-danger w-100" (click)="removeFromCart(item.id)"><span class="me-2">🗑️</span>Eliminar</button>
+      @for (item of cartItems; track item.id) {
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img ngSrc="{{ item.imagen }}" width="320" height="200" alt="Libro carrito" class="card-img-top"
+                 style="height: 200px; object-fit: contain; background: #f8f9fa;">
+            <div class="card-body">
+              <h5 class="card-title">{{ item.titulo }}</h5>
+              <p class="card-text mb-1"><strong>Autor:</strong> {{ item.autor }}</p>
+              <p class="card-text mb-1"><strong>Año:</strong> {{ item['año'] }} |
+                <strong>Categoría:</strong> {{ item.categoria }}</p>
+              <button class="btn btn-danger w-100" (click)="removeFromCart(item.id)"><span class="me-2">🗑️</span>Eliminar
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div *ngIf="cartItems.length === 0" class="col-12">
-        <div class="alert alert-warning text-center">No hay libros en el carrito.</div>
-      </div>
+      }
+      @if (cartItems.length === 0) {
+        <div class="col-12">
+          <div class="alert alert-warning text-center">No hay libros en el carrito.</div>
+        </div>
+      }
     </ng-container>
   </div>
   <div class="row justify-content-end mb-4">
@@ -39,8 +48,9 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-8 mx-auto text-center">
-      <div class="alert alert-info d-flex align-items-center justify-content-center">
+    <div class="col-12 d-flex justify-content-center">
+      <div class="alert alert-info d-flex align-items-center justify-content-center"
+           style="width: 80vw; max-width: 80vw;">
         <span class="me-2">❓</span>
         <span>¿Tienes dudas sobre el proceso de compra? Nuestro equipo está disponible para ayudarte en todo momento.</span>
       </div>
@@ -49,42 +59,51 @@
 </div>
 
 <!-- Modal de pago -->
-<div *ngIf="showPaymentDialog">
-  <div class="modal d-block" tabindex="-1" role="dialog" aria-modal="true" style="background: rgba(0,0,0,0.4);">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Pago con tarjeta de crédito</h5>
-          <button type="button" class="btn-close" aria-label="Cerrar" (click)="closePaymentDialog()"></button>
+<div class="row">
+  @if (showPaymentDialog) {
+    <div class="modal d-block" tabindex="-1" role="dialog" aria-modal="true" style="background: rgba(0,0,0,0.4);">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Pago con tarjeta de crédito</h5>
+            <button type="button" class="btn-close" aria-label="Cerrar" (click)="closePaymentDialog()"></button>
+          </div>
+          <form (ngSubmit)="submitPayment()" autocomplete="off">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label class="form-label">Nombre en la tarjeta</label>
+                <input type="text" class="form-control" [(ngModel)]="paymentForm.name" name="name" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Número de tarjeta</label>
+                <input type="text" class="form-control" maxlength="19" [(ngModel)]="paymentForm.number" name="number"
+                       required placeholder="1234 5678 9012 3456">
+              </div>
+              <div class="row">
+                <div class="col-6 mb-3">
+                  <label class="form-label">Expiración (MM/AA)</label>
+                  <input type="text" class="form-control" maxlength="5" [(ngModel)]="paymentForm.expiry" name="expiry"
+                         required placeholder="MM/AA">
+                </div>
+                <div class="col-6 mb-3">
+                  <label class="form-label">CVV</label>
+                  <input type="text" class="form-control" maxlength="4" [(ngModel)]="paymentForm.cvv" name="cvv"
+                         required placeholder="123">
+                </div>
+              </div>
+              <div class="row">
+                @if (paymentError) {
+                  <div class="alert alert-danger py-2">{{ paymentError }}</div>
+                }
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="closePaymentDialog()">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Pagar</button>
+            </div>
+          </form>
         </div>
-        <form (ngSubmit)="submitPayment()" autocomplete="off">
-          <div class="modal-body">
-            <div class="mb-3">
-              <label class="form-label">Nombre en la tarjeta</label>
-              <input type="text" class="form-control" [(ngModel)]="paymentForm.name" name="name" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Número de tarjeta</label>
-              <input type="text" class="form-control" maxlength="19" [(ngModel)]="paymentForm.number" name="number" required placeholder="1234 5678 9012 3456">
-            </div>
-            <div class="row">
-              <div class="col-6 mb-3">
-                <label class="form-label">Expiración (MM/AA)</label>
-                <input type="text" class="form-control" maxlength="5" [(ngModel)]="paymentForm.expiry" name="expiry" required placeholder="MM/AA">
-              </div>
-              <div class="col-6 mb-3">
-                <label class="form-label">CVV</label>
-                <input type="text" class="form-control" maxlength="4" [(ngModel)]="paymentForm.cvv" name="cvv" required placeholder="123">
-              </div>
-            </div>
-            <div *ngIf="paymentError" class="alert alert-danger py-2">{{ paymentError }}</div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" (click)="closePaymentDialog()">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Pagar</button>
-          </div>
-        </form>
       </div>
     </div>
-  </div>
+  }
 </div>

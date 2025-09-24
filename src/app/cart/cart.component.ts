@@ -1,8 +1,8 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { CartStoreService } from './cart.store';
-import { Book } from '../book-search/book.model';
-import { Observable } from 'rxjs';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {Component} from '@angular/core';
+import {CartStoreService} from './cart.store';
+import {Book} from '../book-search/book.model';
+import {Observable} from 'rxjs';
 import {FormsModule} from '@angular/forms';
 
 @Component({
@@ -10,7 +10,7 @@ import {FormsModule} from '@angular/forms';
   standalone: true,
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgOptimizedImage],
 })
 export class CartComponent {
   cartItems$: Observable<Book[]>;
@@ -34,13 +34,13 @@ export class CartComponent {
 
   closePaymentDialog(): void {
     this.showPaymentDialog = false;
-    this.paymentForm = { name: '', number: '', expiry: '', cvv: '' };
+    this.paymentForm = {name: '', number: '', expiry: '', cvv: ''};
     this.paymentError = '';
   }
 
   submitPayment(): void {
     // Simple validation
-    const { name, number, expiry, cvv } = this.paymentForm;
+    const {name, number, expiry, cvv} = this.paymentForm;
     if (!name || !number || !expiry || !cvv) {
       this.paymentError = 'Todos los campos son obligatorios.';
       return;

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Book } from './book.model';
-import { BookSearchService } from './book-search.service';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { CartStoreService } from '../cart/cart.store';
+import {Component, OnInit} from '@angular/core';
+import {Book} from './book.model';
+import {BookSearchService} from './book-search.service';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {CartStoreService} from '../cart/cart.store';
 
 @Component({
   selector: 'app-book-search',
@@ -28,7 +28,8 @@ export class BookSearchComponent implements OnInit {
   total = 0;
   totalPages = 1;
 
-  constructor(private bookService: BookSearchService, public cartStore: CartStoreService) {}
+  constructor(private bookService: BookSearchService, public cartStore: CartStoreService) {
+  }
 
   ngOnInit(): void {
     this.bookService.getAllBooks().subscribe((books) => {
@@ -94,6 +95,6 @@ export class BookSearchComponent implements OnInit {
   }
 
   get pages(): number[] {
-    return Array.from({ length: Math.max(this.totalPages, 1) }, (_, i) => i + 1);
+    return Array.from({length: Math.max(this.totalPages, 1)}, (_, i) => i + 1);
   }
 }

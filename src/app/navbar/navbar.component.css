@@ -8,27 +8,32 @@
   background: #fff;
   padding: 16px 32px;
   border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(108,99,255,0.08);
+  box-shadow: 0 2px 12px rgba(108, 99, 255, 0.08);
 }
+
 .navbar-brand {
   display: flex;
   align-items: center;
   gap: 12px;
 }
+
 .navbar-logo {
   width: 36px;
   height: 36px;
 }
+
 .navbar-title {
   font-size: 1.5rem;
   font-weight: bold;
   color: #6c63ff;
   letter-spacing: 1px;
 }
+
 .navbar-links {
   display: flex;
   gap: 32px;
 }
+
 .navbar-links a {
   color: #444;
   text-decoration: none;
@@ -39,11 +44,13 @@
   transition: background 0.2s, color 0.2s;
   position: relative;
 }
+
 .navbar-links a.active,
 .navbar-links a:hover {
   background: #6c63ff;
   color: #fff;
 }
+
 @media (max-width: 900px) {
   .navbar {
     flex-direction: column;
@@ -51,10 +58,12 @@
     padding: 12px 8px;
     width: 98vw;
   }
+
   .navbar-links {
     gap: 12px;
     margin-top: 8px;
   }
+
   .navbar-title {
     font-size: 1.2rem;
   }
