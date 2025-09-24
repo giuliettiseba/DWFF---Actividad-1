@@ -1,0 +1,58 @@
+<div class="search-hero">
+  <div class="search-hero-bg"></div>
+  <div class="central-column search-hero-content">
+    <h1><span class="highlight">Buscar Libros</span></h1>
+    <p class="subtitle">Encuentra tu próxima lectura entre cientos de títulos y géneros.</p>
+  </div>
+</div>
+<div class="central-column">
+  <form class="filters" (submit)="onSubmit($event)">
+    <div class="filter-row">
+      <div class="filter-group">
+        <span class="filter-icon"><img src="https://cdn-icons-png.flaticon.com/512/709/709722.png" alt="Título"/></span>
+        <input type="text" placeholder="Título" name="title" [(ngModel)]="filters.title" (ngModelChange)="onFilterChange()">
+      </div>
+      <div class="filter-group">
+        <span class="filter-icon"><img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Autor"/></span>
+        <input type="text" placeholder="Autor" name="author" [(ngModel)]="filters.author" (ngModelChange)="onFilterChange()">
+      </div>
+      <div class="filter-group">
+        <span class="filter-icon"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Año"/></span>
+        <input type="number" placeholder="Año" name="year" [(ngModel)]="filters.year" (ngModelChange)="onFilterChange()">
+      </div>
+      <div class="filter-group">
+        <span class="filter-icon"><img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="Categoría"/></span>
+        <select name="category" [(ngModel)]="filters.category" (change)="onFilterChange()">
+          <option value="">Categoría</option>
+          <option value="novela">Novela</option>
+          <option value="infantil">Infantil</option>
+          <option value="historia">Historia</option>
+          <option value="ciencia">Ciencia</option>
+        </select>
+      </div>
+      <button type="submit" class="search-btn">Buscar</button>
+    </div>
+  </form>
+  <div class="book-grid">
+    <div *ngIf="books.length === 0" class="no-results">
+      <p>No se encontraron libros para los filtros seleccionados.</p>
+    </div>
+    <div class="book-card" *ngFor="let book of books">
+      <img [src]="book.imagen" [alt]="book.titulo" class="book-img">
+      <div class="book-info">
+        <h3>{{ book.titulo }}</h3>
+        <p class="book-meta">Autor: {{ book.autor }}</p>
+        <p class="book-meta">Año: {{ book['año '] }} | Categoría: {{ book.categoria }}</p>
+        <p class="book-sinopsis">{{ book.sinopsis }}</p>
+        <button class="add-cart-btn">Añadir al carrito</button>
+      </div>
+    </div>
+  </div>
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="page === 1">Anterior</button>
+    <ng-container *ngFor="let p of pages">
+      <button (click)="goToPage(p)" [class.active]="page === p">{{ p }}</button>
+    </ng-container>
+    <button (click)="nextPage()" [disabled]="page === totalPages">Siguiente</button>
+  </div>
+</div>

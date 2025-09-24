@@ -1,0 +1,28 @@
+import { Injectable } from '@angular/core';
+import { Book } from './book.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+@Injectable({ providedIn: 'root' })
+export class BookSearchService {
+  private apiUrl = 'https://mock.apidog.com/m1/1069422-1057565-default/Books';
+
+  constructor(private http: HttpClient) {}
+
+  getAllBooks(): Observable<Book[]> {
+    return this.http.get<any>(this.apiUrl).pipe(
+      map(response => {
+        if (Array.isArray(response)) {
+          return response;
+        } else if (response.books) {
+          return response.books;
+        } else if (Array.isArray(response.data)) {
+          return response.data;
+        } else {
+          return [];
+        }
+      })
+    );
+  }
+}
