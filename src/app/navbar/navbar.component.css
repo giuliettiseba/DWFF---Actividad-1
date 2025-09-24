@@ -51,25 +51,6 @@
   color: #fff;
 }
 
-.cart-animate {
-  animation: cartPulse 2.6s ease-in-out infinite;
-}
-
-@keyframes cartPulse {
-  0% {
-    transform: scale(1);
-    background-color: inherit;
-  }
-  50% {
-    transform: scale(1.10);
-    /*background-color: rgba(14, 125, 155, 0.1);*/
-  }
-  100% {
-    transform: scale(1);
-    background-color: inherit;
-  }
-}
-
 @media (max-width: 900px) {
   .navbar {
     flex-direction: column;
