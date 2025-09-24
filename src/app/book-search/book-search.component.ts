@@ -27,6 +27,8 @@ export class BookSearchComponent implements OnInit {
   limit = 6;
   total = 0;
   totalPages = 1;
+  showConfirmation = false;
+  lastAddedBook: Book | null = null;
 
   constructor(private bookService: BookSearchService, public cartStore: CartStoreService) {
   }
@@ -92,6 +94,9 @@ export class BookSearchComponent implements OnInit {
 
   addToCart(book: Book): void {
     this.cartStore.addToCart(book);
+    this.lastAddedBook = book;
+    this.showConfirmation = true;
+    setTimeout(() => this.showConfirmation = false, 2000); // Auto-close after 2s
   }
 
   get pages(): number[] {

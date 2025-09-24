@@ -15,18 +15,18 @@
   </div>
   <div class="row">
     <ng-container *ngIf="cartItems$ | async as cartItems">
-      @for (item of cartItems; track item.id) {
+      @for (item of cartItems; track item.book.id) {
         <div class="col-md-4 mb-4">
           <div class="card h-100">
-            <img ngSrc="{{ item.imagen }}" width="320" height="200" alt="Libro carrito" class="card-img-top"
+            <img ngSrc="{{ item.book.imagen }}" width="320" height="200" alt="Libro carrito" class="card-img-top"
                  style="height: 200px; object-fit: contain; background: #f8f9fa;">
             <div class="card-body">
-              <h5 class="card-title">{{ item.titulo }}</h5>
-              <p class="card-text mb-1"><strong>Autor:</strong> {{ item.autor }}</p>
-              <p class="card-text mb-1"><strong>Año:</strong> {{ item['año'] }} |
-                <strong>Categoría:</strong> {{ item.categoria }}</p>
-              <button class="btn btn-danger w-100" (click)="removeFromCart(item.id)"><span class="me-2">🗑️</span>Eliminar
-              </button>
+              <h5 class="card-title">{{ item.book.titulo }}</h5>
+              <p class="card-text mb-1"><strong>Autor:</strong> {{ item.book.autor }}</p>
+              <p class="card-text mb-1"><strong>Año:</strong> {{ item.book['año'] }} |
+                <strong>Categoría:</strong> {{ item.book.categoria }}</p>
+              <p class="card-text mb-1"><strong>Cantidad:</strong> {{ item.quantity }}</p>
+              <button class="btn btn-danger w-100" (click)="removeFromCart(item.book.id)"><span class="me-2">🗑️</span>Eliminar</button>
             </div>
           </div>
         </div>

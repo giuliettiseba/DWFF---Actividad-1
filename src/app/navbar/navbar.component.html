@@ -14,7 +14,12 @@
           <a class="nav-link" routerLink="/buscar" routerLinkActive="active">Buscar Libros</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/carrito" routerLinkActive="active">Carrito</a>
+          <a class="nav-link"
+             routerLink="/carrito"
+             routerLinkActive="active"
+             [ngClass]="{ 'cart-animate': ((cartItemCount$ | async) ?? 0) > 0 }">
+            Carrito
+          </a>
         </li>
       </ul>
     </div>

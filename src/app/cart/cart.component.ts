@@ -1,7 +1,6 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {Component} from '@angular/core';
-import {CartStoreService} from './cart.store';
-import {Book} from '../book-search/book.model';
+import {CartStoreService, CartItem} from './cart.store';
 import {Observable} from 'rxjs';
 import {FormsModule} from '@angular/forms';
 
@@ -13,7 +12,7 @@ import {FormsModule} from '@angular/forms';
   imports: [CommonModule, FormsModule, NgOptimizedImage],
 })
 export class CartComponent {
-  cartItems$: Observable<Book[]>;
+  cartItems$: Observable<CartItem[]>;
   showPaymentDialog = false;
   paymentForm = {
     name: '',

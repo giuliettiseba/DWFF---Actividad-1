@@ -5,7 +5,7 @@
       <p class="lead">Encuentra tu próxima lectura entre cientos de títulos y géneros.</p>
     </div>
   </div>
-  <form class="row g-3 mb-4" (submit)="onSubmit($event)">
+  <form class="row g-3 mb-4 justify-content-center text-center" (submit)="onSubmit($event)">
     <div class="col-md-3">
       <input type="text" class="form-control" placeholder="Título" name="title" [(ngModel)]="filters.title"
              (ngModelChange)="onFilterChange()">
@@ -27,9 +27,7 @@
         <option value="Ciencia">Ciencia</option>
       </select>
     </div>
-    <div class="col-md-2 d-grid">
-      <button type="submit" class="btn btn-primary">Buscar</button>
-    </div>
+
   </form>
   <div class="row">
     @if (books.length === 0) {
@@ -70,5 +68,8 @@
         </ul>
       </nav>
     </div>
+  </div>
+  <div *ngIf="showConfirmation" class="confirmation-dialog">
+    <span>Libro <strong>{{ lastAddedBook?.titulo }}</strong> agregado al carrito.</span>
   </div>
 </div>
