@@ -11,8 +11,12 @@ export class BookSearchService {
   constructor(private http: HttpClient) {
   }
 
-  getAllBooks(): Observable<Book[]> {
-    return this.http.get<any>(this.apiUrl).pipe(
+  getAllBooks(category?: string): Observable<Book[]> {
+    let url = this.apiUrl;
+    if (category) {
+      url += `?category=${encodeURIComponent(category)}`;
+    }
+    return this.http.get<any>(url).pipe(
       map(response => {
         if (Array.isArray(response)) {
           return response;

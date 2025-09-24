@@ -34,19 +34,27 @@ export class BookSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.bookService.getAllBooks().subscribe((books) => {
+    this.fetchBooks();
+  }
+
+  fetchBooks(): void {
+    const category = this.filters.category || undefined;
+    this.bookService.getAllBooks(category).subscribe((books) => {
       this.allBooks = books;
-      this.applyFilters();
+      this.applyFilters(true);
     });
   }
 
-  applyFilters(): void {
+  applyFilters(fromApi = false): void {
+    if (!fromApi) {
+      this.fetchBooks();
+      return;
+    }
     this.filteredBooks = this.allBooks.filter(book => {
       const matchesTitle = this.filters.title ? book.titulo.toLowerCase().includes(this.filters.title.toLowerCase()) : true;
       const matchesAuthor = this.filters.author ? book.autor.toLowerCase().includes(this.filters.author.toLowerCase()) : true;
       const matchesYear = this.filters.year ? String(book['año']).includes(this.filters.year) : true;
-      const matchesCategory = this.filters.category ? book.categoria === this.filters.category : true;
-      return matchesTitle && matchesAuthor && matchesYear && matchesCategory;
+      return matchesTitle && matchesAuthor && matchesYear;
     });
     this.total = this.filteredBooks.length;
     this.totalPages = Math.max(1, Math.ceil(this.total / this.limit));
