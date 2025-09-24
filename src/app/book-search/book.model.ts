@@ -9,7 +9,7 @@ export interface Book {
   imagen: string;
   sinopsis: string;
   titulo: string;
+  precio: number;
 
   [property: string]: any;
 }
-

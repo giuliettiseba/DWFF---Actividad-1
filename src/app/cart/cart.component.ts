@@ -13,6 +13,7 @@ import {FormsModule} from '@angular/forms';
 })
 export class CartComponent {
   cartItems$: Observable<CartItem[]>;
+  cartTotal$: Observable<number>;
   showPaymentDialog = false;
   paymentForm = {
     name: '',
@@ -24,6 +25,7 @@ export class CartComponent {
 
   constructor(public cartStore: CartStoreService) {
     this.cartItems$ = this.cartStore.cartItems$;
+    this.cartTotal$ = this.cartStore.cartTotal$;
   }
 
   openPaymentDialog(): void {

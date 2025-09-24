@@ -45,6 +45,7 @@
             <p class="card-text mb-1"><strong>Autor:</strong> {{ book.autor }}</p>
             <p class="card-text mb-1"><strong>Año:</strong> {{ book['año'] }} |
               <strong>Categoría:</strong> {{ book.categoria }}</p>
+            <p class="card-text mb-1"><strong>Precio:</strong> ${{ book.precio | number:'1.2-2' }}</p>
             <p class="card-text">{{ book.sinopsis }}</p>
             <button class="btn btn-success w-100" (click)="addToCart(book)">Añadir al carrito</button>
           </div>

@@ -15,6 +15,9 @@ export class CartStoreService {
   cartItemCount$: Observable<number> = this.cartItems$.pipe(
     map(items => items.reduce((sum, item) => sum + item.quantity, 0))
   );
+  cartTotal$: Observable<number> = this.cartItems$.pipe(
+    map(items => items.reduce((sum, item) => sum + item.book.precio * item.quantity, 0))
+  );
 
   get cartItems(): CartItem[] {
     return this.cartItemsSubject.value;
