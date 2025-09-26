@@ -3,10 +3,11 @@ import {Book} from './book.model';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {Review} from './review.model';
 
 @Injectable({providedIn: 'root'})
 export class BookSearchService {
-  private apiUrl = 'https://mock.apidog.com/m1/1069422-1057565-default/Books';
+  private apiUrl = 'https://mock.apidog.com/m1/1069422-1057565-default/books';
 
   constructor(private http: HttpClient) {
   }
@@ -29,5 +30,15 @@ export class BookSearchService {
         }
       })
     );
+  }
+
+  getReviews(bookId: number): Observable<Review[]> {
+    const url = `${this.apiUrl}/${bookId}/reviews`;
+    return this.http.get<Review[]>(url);
+  }
+
+  addReview(bookId: number, review: Omit<Review, 'id'>): Observable<Review> {
+    const url = `${this.apiUrl}/${bookId}/reviews`;
+    return this.http.post<Review>(url, review);
   }
 }

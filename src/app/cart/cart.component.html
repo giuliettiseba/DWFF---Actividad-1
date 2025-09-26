@@ -1,7 +1,7 @@
 <div class="container" style="max-width: 1200px; margin: 0 auto;">
-  <div class="row align-items-center py-4 mb-4 bg-light rounded shadow">
+  <div class="row align-items-center py-4 mb-4 header">
     <div class="col text-center">
-      <h1 class="display-5"><span class="text-primary">Carrito de Compras</span></h1>
+      <h1 class="display-5"><span>Carrito de Compras</span></h1>
       <p class="lead">Revisa tus libros seleccionados y finaliza tu compra fácilmente.</p>
     </div>
   </div>
@@ -19,7 +19,7 @@
         <div class="col-md-4 mb-4">
           <div class="card h-100">
             <img ngSrc="{{ item.book.imagen }}" width="320" height="200" alt="Libro carrito" class="card-img-top"
-                 style="height: 200px; object-fit: contain; background: #f8f9fa;">
+                 style="height: 200px; object-fit: contain; background: transparent;">
             <div class="card-body">
               <h5 class="card-title">{{ item.book.titulo }}</h5>
               <p class="card-text mb-1"><strong>Autor:</strong> {{ item.book.autor }}</p>
@@ -40,7 +40,7 @@
   </div>
   <div class="row justify-content-end mb-4">
     <div class="col-md-4">
-      <div class="d-flex justify-content-between align-items-center border rounded p-3 mb-2">
+      <div class="d-flex justify-content-between align-items-center p-3 mb-2 total-section">
         <span class="fw-bold">Total:</span>
         <span class="fs-5">${{ cartTotal$ | async | number:'1.2-2' }}</span>
       </div>

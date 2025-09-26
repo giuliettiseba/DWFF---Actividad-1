@@ -1,1 +1,22 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+  --color-primary: #811dec;
+  --color-secondary: #1dec81;
+  --color-warn: #ec811d;
+  --color-background: #fffafa;
+  --color-surface: #f8f8ff;
+  --color-text-base: #212121;
+  --color-text-on-primary: #ffffff;
+  --color-text-on-secondary: #000000;
+}
+
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-base);
+}

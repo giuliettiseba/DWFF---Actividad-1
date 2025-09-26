@@ -4,6 +4,7 @@ import {BookSearchService} from './book-search.service';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {CartStoreService} from '../cart/cart.store';
+import {Review} from './review.model';
 
 @Component({
   selector: 'app-book-search',
@@ -29,6 +30,12 @@ export class BookSearchComponent implements OnInit {
   totalPages = 1;
   showConfirmation = false;
   lastAddedBook: Book | null = null;
+
+  // Reseñas
+  reviews: { [bookId: number]: Review[] } = {};
+  newReview: { [bookId: number]: { puntuacion: number; comentario: string } } = {};
+  loadingReviews: { [bookId: number]: boolean } = {};
+  submittingReview: { [bookId: number]: boolean } = {};
 
   constructor(private bookService: BookSearchService, public cartStore: CartStoreService) {
   }
@@ -105,6 +112,46 @@ export class BookSearchComponent implements OnInit {
     this.lastAddedBook = book;
     this.showConfirmation = true;
     setTimeout(() => this.showConfirmation = false, 2000); // Auto-close after 2s
+  }
+
+  loadReviews(bookId: number): void {
+    // Si las reseñas ya están cargadas, las ocultamos
+    if (this.reviews[bookId]) {
+      delete this.reviews[bookId];
+      return;
+    }
+
+    this.loadingReviews[bookId] = true;
+    if (!this.newReview[bookId]) {
+      this.newReview[bookId] = { puntuacion: 0, comentario: '' };
+    }
+    this.bookService.getReviews(bookId).subscribe({
+      next: (reviews) => {
+        this.reviews[bookId] = reviews;
+        this.loadingReviews[bookId] = false;
+      },
+      error: () => {
+        this.reviews[bookId] = [];
+        this.loadingReviews[bookId] = false;
+      }
+    });
+  }
+
+  submitReview(bookId: number): void {
+    const review = this.newReview[bookId];
+    if (!review || !review.puntuacion || !review.comentario) return;
+    this.submittingReview[bookId] = true;
+    this.bookService.addReview(bookId, review).subscribe({
+      next: (created) => {
+        if (!this.reviews[bookId]) this.reviews[bookId] = [];
+        this.reviews[bookId].push(created);
+        this.newReview[bookId] = { puntuacion: 0, comentario: '' };
+        this.submittingReview[bookId] = false;
+      },
+      error: () => {
+        this.submittingReview[bookId] = false;
+      }
+    });
   }
 
   get pages(): number[] {
