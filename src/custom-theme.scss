@@ -1,8 +1,9 @@
 @use '@angular/material' as mat;
 
-@include mat.core();
+@include mat-core();
 
-$mat-primary: (
+// Define custom palettes
+$custom-primary-palette: (
   50: #f3e8fe,
   100: #e2c6fc,
   200: #d0a1fa,
@@ -13,6 +14,10 @@ $mat-primary: (
   700: #6014b3,
   800: #501096,
   900: #3f0c7a,
+  A100: #e2c6fc,
+  A200: #d0a1fa,
+  A400: #af5ef6,
+  A700: #6014b3,
   contrast: (
     50: #000000,
     100: #000000,
@@ -24,10 +29,14 @@ $mat-primary: (
     700: #ffffff,
     800: #ffffff,
     900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #ffffff,
+    A700: #ffffff,
   )
 );
 
-$mat-accent: (
+$custom-accent-palette: (
   50: #e9fef3,
   100: #c7fddc,
   200: #a3fcc4,
@@ -38,6 +47,10 @@ $mat-accent: (
   700: #16c567,
   800: #12b25a,
   900: #0da245,
+  A100: #c7fddc,
+  A200: #a3fcc4,
+  A400: #63fa99,
+  A700: #16c567,
   contrast: (
     50: #000000,
     100: #000000,
@@ -49,10 +62,14 @@ $mat-accent: (
     700: #000000,
     800: #000000,
     900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
   )
 );
 
-$mat-warn: (
+$custom-warn-palette: (
   50: #fdf3e8,
   100: #fbe2c6,
   200: #f9d0a1,
@@ -63,6 +80,10 @@ $mat-warn: (
   700: #c56715,
   800: #b25a12,
   900: #a2450d,
+  A100: #fbe2c6,
+  A200: #f9d0a1,
+  A400: #f5b05f,
+  A700: #c56715,
   contrast: (
     50: #000000,
     100: #000000,
@@ -74,20 +95,17 @@ $mat-warn: (
     700: #ffffff,
     800: #ffffff,
     900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #ffffff,
   )
 );
 
-$primary-palette: mat.define-palette($mat-primary, 500);
-$accent-palette: mat.define-palette($mat-accent, 500);
-$warn-palette: mat.define-palette($mat-warn, 500);
+$primary-palette: mat-palette($custom-primary-palette, 500);
+$accent-palette: mat-palette($custom-accent-palette, 500);
+$warn-palette: mat-palette($custom-warn-palette, 500);
 
-$custom-theme: mat.define-light-theme((
-  color: (
-    primary: $primary-palette,
-    accent: $accent-palette,
-    warn: $warn-palette,
-  )
-));
+$custom-theme: mat-light-theme($primary-palette, $accent-palette, $warn-palette);
 
-@include mat.all-component-themes($custom-theme);
-
+@include angular-material-theme($custom-theme);
