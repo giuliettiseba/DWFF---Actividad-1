@@ -1,0 +1,37 @@
+<footer class="app-footer mt-5 pt-4">
+  <div class="container" style="max-width: 1200px;">
+    <div class="row gy-4 align-items-start">
+      <div class="col-md-4">
+        <h5 class="brand">BookStore</h5>
+        <p class="tagline">Tu plataforma para explorar y disfrutar libros de todos los géneros.</p>
+      </div>
+      <div class="col-6 col-md-2">
+        <h6 class="section">Secciones</h6>
+        <ul class="list-unstyled m-0 p-0 footer-links">
+          <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Inicio</a></li>
+          <li><a routerLink="/buscar" routerLinkActive="active">Buscar</a></li>
+          <li><a routerLink="/carrito" routerLinkActive="active">Carrito</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6 class="section">Recursos</h6>
+        <ul class="list-unstyled m-0 p-0 footer-links">
+          <li><a href="#" rel="noopener" aria-disabled="true">Ayuda</a></li>
+          <li><a href="#" rel="noopener" aria-disabled="true">Soporte</a></li>
+          <li><a href="#" rel="noopener" aria-disabled="true">Políticas</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6 class="section">Contacto</h6>
+        <p class="small m-0">Email: <a href="mailto:info@bookstore.dev">info@bookstore.dev</a></p>
+        <p class="small m-0">© {{ year }} BookStore</p>
+      </div>
+    </div>
+    <hr class="divider my-4" />
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center small sub-footer">
+      <span>© {{ year }} BookStore. Todos los derechos reservados.</span>
+      <span class="credits">Hecho con <span class="heart" aria-hidden="true">❤</span> usando Angular.</span>
+    </div>
+  </div>
+</footer>
+

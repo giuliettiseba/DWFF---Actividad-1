@@ -63,6 +63,15 @@ main {
   position: relative;
 }
 
+.app-main {
+  min-height: calc(100vh - 160px); /* leave space for nav + footer */
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .app-main { min-height: calc(100vh - 200px); }
+}
+
 .angular-logo {
   max-width: 9.2rem;
 }

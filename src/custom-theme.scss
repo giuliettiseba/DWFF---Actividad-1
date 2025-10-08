@@ -3,8 +3,8 @@
 // Initialize core styles
 @include mat.core();
 
-// Custom palettes (Material expects tone keys 50-900 + A-range and contrast)
-$custom-primary-palette: (
+// Full primary palette (purple)
+$bookstore-primary: (
   50: #f3e8fe,
   100: #e2c6fc,
   200: #d0a1fa,
@@ -37,40 +37,8 @@ $custom-primary-palette: (
   )
 );
 
-$custom-accent-palette: (
-  50: #e9fef3,
-  100: #c7fddc,
-  200: #a3fcc4,
-  300: #7ffbac,
-  400: #63fa99,
-  500: #1dec81,
-  600: #1ad975,
-  700: #16c567,
-  800: #12b25a,
-  900: #0da245,
-  A100: #c7fddc,
-  A200: #a3fcc4,
-  A400: #63fa99,
-  A700: #16c567,
-  contrast: (
-    50: #000,
-    100: #000,
-    200: #000,
-    300: #000,
-    400: #000,
-    500: #000,
-    600: #000,
-    700: #000,
-    800: #000,
-    900: #fff,
-    A100: #000,
-    A200: #000,
-    A400: #000,
-    A700: #000,
-  )
-);
-
-$custom-warn-palette: (
+// Tertiary / warn palette (orange)
+$bookstore-tertiary: (
   50: #fdf3e8,
   100: #fbe2c6,
   200: #f9d0a1,
@@ -103,19 +71,11 @@ $custom-warn-palette: (
   )
 );
 
-$primary-palette: mat.define-palette($custom-primary-palette, 500);
-$accent-palette: mat.define-palette($custom-accent-palette, 500);
-$warn-palette: mat.define-palette($custom-warn-palette, 500);
-
-$custom-theme: mat.define-light-theme((
-  color: (
-    primary: $primary-palette,
-    secondary: $accent-palette,
-    tertiary: $warn-palette
-  ),
-  typography: mat.define-typography-config(),
-  density: 0,
-));
-
-// Emit all component themes
-@include mat.all-component-themes($custom-theme);
+// Custom theme placeholder: Material theming disabled due to build errors.
+// The app currently relies on CSS variables defined in styles.css.
+// If you later need Angular Material components, reintroduce a valid M3 theme.
+:root {
+  /* Mirror key brand colors (already in styles.css) */
+  --mdc-theme-primary: #811dec;
+  --mdc-theme-tertiary: #ec811d;
+}

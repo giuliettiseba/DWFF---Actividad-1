@@ -39,5 +39,25 @@ body {
 .feature-card-secondary .card-title { color: var(--color-secondary); }
 .feature-card-warn .card-title { color: var(--color-warn); }
 
+/* Generic themed card */
+.themed-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-primary);
+  color: var(--color-text-base);
+  border-radius: 0.5rem;
+  transition: border-color .25s, box-shadow .25s;
+}
+.themed-card:hover {
+  border-color: var(--color-secondary);
+  box-shadow: 0 4px 14px -2px rgba(0,0,0,0.12);
+}
+
 /* Consistent card image spacing */
 .card-img-top { background: transparent; }
+
+/* Placeholder + select visibility */
+.form-control::placeholder { color: rgba(33,33,33,0.55); }
+.form-control:focus::placeholder { color: rgba(33,33,33,0.35); }
+.form-select { color: var(--color-text-base); }
+/* Make the default empty option lighter */
+.form-select option[value=""] { color: rgba(33,33,33,0.55); }
