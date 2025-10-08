@@ -1,5 +1,5 @@
 <div class="container" style="max-width: 1200px; margin: 0 auto;">
-  <div class="row align-items-center py-4 mb-4 header">
+  <div class="row align-items-center py-4 mb-4 page-header">
     <div class="col text-center">
       <h1 class="display-5"><span>Buscar Libros</span></h1>
       <p class="lead">Encuentra tu próxima lectura entre cientos de títulos y géneros.</p>
@@ -37,7 +37,7 @@
     }
     @for (book of books; track book.id) {
       <div class="col-md-4 mb-4">
-        <div class="card h-100">
+        <div class="card h-100 themed-card">
           <img [src]="book.imagen" [alt]="book.titulo" class="card-img-top img-fluid"
                style="height: 220px; object-fit: contain; width: 100%; background: transparent; display: block;">
           <div class="card-body">
@@ -62,16 +62,6 @@
                   </li>
                 </ul>
               </div>
-<!--              <form class="mt-2" (ngSubmit)="submitReview(book.id)">-->
-<!--                <div class="input-group input-group-sm mb-1">-->
-<!--                  <select class="form-select" [(ngModel)]="newReview[book.id].puntuacion" name="puntuacion-{{book.id}}" required>-->
-<!--                    <option value="" disabled selected>Puntuación</option>-->
-<!--                    <option *ngFor="let n of [1,2,3,4,5]" [value]="n">{{n}}</option>-->
-<!--                  </select>-->
-<!--                  <input type="text" class="form-control" [(ngModel)]="newReview[book.id].comentario" name="comentario-{{book.id}}" placeholder="Comentario" required maxlength="200">-->
-<!--                  <button class="btn btn-outline-primary" type="submit" [disabled]="submittingReview[book.id]">Enviar</button>-->
-<!--                </div>-->
-<!--              </form>-->
             </div>
           </div>
         </div>

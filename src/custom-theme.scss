@@ -1,8 +1,9 @@
 @use '@angular/material' as mat;
 
-@include mat-core();
+// Initialize core styles
+@include mat.core();
 
-// Define custom palettes
+// Custom palettes (Material expects tone keys 50-900 + A-range and contrast)
 $custom-primary-palette: (
   50: #f3e8fe,
   100: #e2c6fc,
@@ -19,20 +20,20 @@ $custom-primary-palette: (
   A400: #af5ef6,
   A700: #6014b3,
   contrast: (
-    50: #000000,
-    100: #000000,
-    200: #000000,
-    300: #000000,
-    400: #ffffff,
-    500: #ffffff,
-    600: #ffffff,
-    700: #ffffff,
-    800: #ffffff,
-    900: #ffffff,
-    A100: #000000,
-    A200: #000000,
-    A400: #ffffff,
-    A700: #ffffff,
+    50: #000,
+    100: #000,
+    200: #000,
+    300: #000,
+    400: #fff,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: #fff,
+    A100: #000,
+    A200: #000,
+    A400: #fff,
+    A700: #fff,
   )
 );
 
@@ -52,20 +53,20 @@ $custom-accent-palette: (
   A400: #63fa99,
   A700: #16c567,
   contrast: (
-    50: #000000,
-    100: #000000,
-    200: #000000,
-    300: #000000,
-    400: #000000,
-    500: #000000,
-    600: #000000,
-    700: #000000,
-    800: #000000,
-    900: #ffffff,
-    A100: #000000,
-    A200: #000000,
-    A400: #000000,
-    A700: #000000,
+    50: #000,
+    100: #000,
+    200: #000,
+    300: #000,
+    400: #000,
+    500: #000,
+    600: #000,
+    700: #000,
+    800: #000,
+    900: #fff,
+    A100: #000,
+    A200: #000,
+    A400: #000,
+    A700: #000,
   )
 );
 
@@ -85,27 +86,36 @@ $custom-warn-palette: (
   A400: #f5b05f,
   A700: #c56715,
   contrast: (
-    50: #000000,
-    100: #000000,
-    200: #000000,
-    300: #000000,
-    400: #000000,
-    500: #ffffff,
-    600: #ffffff,
-    700: #ffffff,
-    800: #ffffff,
-    900: #ffffff,
-    A100: #000000,
-    A200: #000000,
-    A400: #000000,
-    A700: #ffffff,
+    50: #000,
+    100: #000,
+    200: #000,
+    300: #000,
+    400: #000,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: #fff,
+    A100: #000,
+    A200: #000,
+    A400: #000,
+    A700: #fff,
   )
 );
 
-$primary-palette: mat-palette($custom-primary-palette, 500);
-$accent-palette: mat-palette($custom-accent-palette, 500);
-$warn-palette: mat-palette($custom-warn-palette, 500);
+$primary-palette: mat.define-palette($custom-primary-palette, 500);
+$accent-palette: mat.define-palette($custom-accent-palette, 500);
+$warn-palette: mat.define-palette($custom-warn-palette, 500);
 
-$custom-theme: mat-light-theme($primary-palette, $accent-palette, $warn-palette);
+$custom-theme: mat.define-light-theme((
+  color: (
+    primary: $primary-palette,
+    secondary: $accent-palette,
+    tertiary: $warn-palette
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
 
-@include angular-material-theme($custom-theme);
+// Emit all component themes
+@include mat.all-component-themes($custom-theme);

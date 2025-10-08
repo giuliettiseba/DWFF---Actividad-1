@@ -4,19 +4,40 @@
   --color-primary: #811dec;
   --color-secondary: #1dec81;
   --color-warn: #ec811d;
-  --color-background: #fffafa;
+  --color-background: #fffafa; /* nieve */
   --color-surface: #f8f8ff;
   --color-text-base: #212121;
   --color-text-on-primary: #ffffff;
   --color-text-on-secondary: #000000;
+  --header-gradient: linear-gradient(135deg, rgba(129,29,236,0.85), rgba(29,236,129,0.85));
 }
 
-html, body {
-  height: 100%;
-}
+html, body { height: 100%; }
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: var(--color-background);
   color: var(--color-text-base);
 }
+
+/* Shared page header (used in book-search & cart) */
+.page-header {
+  background: var(--header-gradient);
+  color: var(--color-text-on-primary);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.page-header h1 span { color: #fff; }
+.page-header .lead { color: #f0f0f0; }
+
+/* Utility for feature cards theme variants */
+.feature-card-primary { border: 2px solid var(--color-primary); }
+.feature-card-secondary { border: 2px solid var(--color-secondary); }
+.feature-card-warn { border: 2px solid var(--color-warn); }
+
+.feature-card-primary .card-title { color: var(--color-primary); }
+.feature-card-secondary .card-title { color: var(--color-secondary); }
+.feature-card-warn .card-title { color: var(--color-warn); }
+
+/* Consistent card image spacing */
+.card-img-top { background: transparent; }

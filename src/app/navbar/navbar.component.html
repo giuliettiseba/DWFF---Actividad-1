@@ -1,31 +1,31 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
-  <div class="container" style="max-width: 1200px;">
-    <a class="navbar-brand d-flex align-items-center" routerLink="/">
+<nav class="navbar navbar-light bg-white shadow-sm mb-4">
+  <div class="container" style="max-width: 1200px; position: relative;">
+    <a class="navbar-brand d-flex align-items-center" routerLink="/" (click)="closeMobileMenu()">
       <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="BookStore Logo" class="me-2"
            style="height: 40px;">
       <span class="fw-bold fs-4">BookStore</span>
     </a>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-           Inicio
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/buscar" routerLinkActive="active">
-            Buscar Libros
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"
-             routerLink="/carrito"
-             routerLinkActive="active">
-            Carrito
-            <span *ngIf="(cartItemCount$ | async) as count" class="badge bg-primary ms-1">{{ count }}</span>
-          </a>
-        </li>
-      </ul>
+
+    <!-- Hamburger / menu toggle button -->
+    <button class="menu-toggle d-lg-none" type="button" (click)="toggleMobileMenu()" aria-label="Menú"
+            [attr.aria-expanded]="mobileMenuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Desktop / Mobile Links -->
+    <div class="navbar-links" [class.open]="mobileMenuOpen">
+      <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMobileMenu()">
+        Inicio
+      </a>
+      <a class="nav-link" routerLink="/buscar" routerLinkActive="active" (click)="closeMobileMenu()">
+        Buscar Libros
+      </a>
+      <a class="nav-link" routerLink="/carrito" routerLinkActive="active" (click)="closeMobileMenu()">
+        Carrito
+        <span *ngIf="(cartItemCount$ | async) as count" class="badge bg-primary ms-1">{{ count }}</span>
+      </a>
     </div>
   </div>
 </nav>

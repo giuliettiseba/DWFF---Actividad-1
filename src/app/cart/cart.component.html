@@ -1,5 +1,5 @@
 <div class="container" style="max-width: 1200px; margin: 0 auto;">
-  <div class="row align-items-center py-4 mb-4 header">
+  <div class="row align-items-center py-4 mb-4 page-header">
     <div class="col text-center">
       <h1 class="display-5"><span>Carrito de Compras</span></h1>
       <p class="lead">Revisa tus libros seleccionados y finaliza tu compra fácilmente.</p>
@@ -17,7 +17,7 @@
     <ng-container *ngIf="cartItems$ | async as cartItems">
       @for (item of cartItems; track item.book.id) {
         <div class="col-md-4 mb-4">
-          <div class="card h-100">
+          <div class="card h-100 themed-card">
             <img ngSrc="{{ item.book.imagen }}" width="320" height="200" alt="Libro carrito" class="card-img-top"
                  style="height: 200px; object-fit: contain; background: transparent;">
             <div class="card-body">
@@ -40,7 +40,7 @@
   </div>
   <div class="row justify-content-end mb-4">
     <div class="col-md-4">
-      <div class="d-flex justify-content-between align-items-center p-3 mb-2 total-section">
+      <div class="d-flex justify-content-between align-items-center p-3 mb-2 total-section themed-card">
         <span class="fw-bold">Total:</span>
         <span class="fs-5">${{ cartTotal$ | async | number:'1.2-2' }}</span>
       </div>
@@ -63,7 +63,7 @@
   @if (showPaymentDialog) {
     <div class="modal d-block" tabindex="-1" role="dialog" aria-modal="true" style="background: rgba(0,0,0,0.4);">
       <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+        <div class="modal-content themed-card">
           <div class="modal-header">
             <h5 class="modal-title">Pago con tarjeta de crédito</h5>
             <button type="button" class="btn-close" aria-label="Cerrar" (click)="closePaymentDialog()"></button>

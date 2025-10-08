@@ -13,8 +13,18 @@ import {AsyncPipe, NgIf} from '@angular/common';
 })
 export class NavbarComponent {
   cartItemCount$: Observable<number>;
+  // Controls mobile menu visibility
+  mobileMenuOpen = false;
 
   constructor(public cartStore: CartStoreService) {
     this.cartItemCount$ = this.cartStore.cartItemCount$;
+  }
+
+  toggleMobileMenu(): void {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  closeMobileMenu(): void {
+    this.mobileMenuOpen = false;
   }
 }

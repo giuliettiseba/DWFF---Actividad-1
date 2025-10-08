@@ -9,12 +9,14 @@
   padding: 16px 32px;
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(108, 99, 255, 0.08);
+  position: relative;
 }
 
 .navbar-brand {
   display: flex;
   align-items: center;
   gap: 12px;
+  text-decoration: none;
 }
 
 .navbar-logo {
@@ -29,42 +31,96 @@
   letter-spacing: 1px;
 }
 
+/* Links container */
 .navbar-links {
   display: flex;
   gap: 32px;
+  align-items: center;
+  transition: max-height .3s ease, opacity .25s ease;
 }
 
 .navbar-links a {
   color: #444;
   text-decoration: none;
-  font-size: 1.1em;
+  font-size: 1.05em;
   font-weight: 500;
   padding: 8px 18px;
   border-radius: 8px;
-  transition: background 0.2s, color 0.2s;
+  transition: background .2s, color .2s;
   position: relative;
+  display: inline-flex;
+  align-items: center;
 }
 
 .navbar-links a.active,
 .navbar-links a:hover {
-  background: #6c63ff;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
 }
 
+/* Hamburger button */
+.menu-toggle {
+  background: transparent;
+  border: none;
+  display: none; /* hidden on desktop */
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px 4px;
+  cursor: pointer;
+  outline: none;
+}
+.menu-toggle span {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  transition: transform .3s, opacity .3s;
+}
+.menu-toggle:focus-visible span {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 4px;
+}
+
+/* Mobile styles */
 @media (max-width: 900px) {
   .navbar {
     flex-direction: column;
-    align-items: flex-start;
-    padding: 12px 8px;
-    width: 98vw;
+    align-items: stretch;
+    padding: 12px 16px;
+  }
+
+  .menu-toggle { /* show hamburger */
+    display: flex;
+    position: absolute;
+    top: 16px;
+    right: 16px;
   }
 
   .navbar-links {
-    gap: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-height: 0; /* collapsed */
+    overflow: hidden;
+    opacity: 0;
     margin-top: 8px;
+    gap: 4px;
+    padding: 0 4px;
   }
+  .navbar-links.open {
+    max-height: 400px; /* enough for links */
+    opacity: 1;
+    padding-bottom: 8px;
+  }
+  .navbar-links a {
+    width: 100%;
+    padding: 10px 12px;
+  }
+}
 
-  .navbar-title {
-    font-size: 1.2rem;
-  }
+/* Slight badge alignment on buttons */
+.badge {
+  font-size: .7rem;
+  padding: 4px 6px;
 }
