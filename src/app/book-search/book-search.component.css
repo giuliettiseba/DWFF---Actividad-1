@@ -1,21 +1,48 @@
-/* Header styles */
+/**
+ * @fileoverview Hoja de estilos del componente de búsqueda de libros
+ * @description Esta hoja de estilos define el diseño del catálogo de libros, formularios de filtros,
+ * tarjetas de productos, paginación y elementos de interfaz para reseñas.
+ * @author Equipo de desarrollo BookStore
+ * @version 1.0.0
+ * @since 2024
+ */
+
+/* === Encabezado de página === */
+
+/**
+ * Contenedor del encabezado de la página de búsqueda
+ * Utiliza la clase compartida .page-header definida en estilos globales
+ */
 .header {
   background-color: var(--color-surface);
   border-radius: 0.5rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+/**
+ * Título principal del encabezado
+ * Aplica color primario para mantener consistencia visual
+ */
 .header h1 span {
   color: var(--color-primary);
 }
 
-/* Form control styles */
+/* === Formularios y controles de entrada === */
+
+/**
+ * Estilos base para campos de formulario
+ * Implementa colores del tema y estados de foco consistentes
+ */
 .form-control, .form-select {
   background-color: var(--color-surface);
   color: var(--color-text-base);
   border: 1px solid var(--color-secondary);
 }
 
+/**
+ * Estados de foco para campos de formulario
+ * Proporciona feedback visual claro durante la interacción
+ */
 .form-control:focus, .form-select:focus {
   background-color: var(--color-surface);
   color: var(--color-text-base);
@@ -23,16 +50,29 @@
   box-shadow: 0 0 0 0.25rem rgba(129, 29, 236, 0.25);
 }
 
+/**
+ * Estilo especial para select en estado pristine
+ * Mejora la visibilidad del texto placeholder en dropdowns
+ */
 .form-select.ng-pristine {
   color: rgba(255, 255, 255, 0.7);
 }
 
+/**
+ * Placeholder personalizado para campos de entrada
+ * Optimiza la legibilidad y contraste del texto de ayuda
+ */
 .form-control::placeholder {
   color: var(--color-text-base);
   opacity: 0.7;
 }
 
-/* Card styles */
+/* === Tarjetas de libros === */
+
+/**
+ * Estilos base para tarjetas de libros
+ * Implementa diseño consistente con el sistema de tarjetas temáticas
+ */
 .card {
   background-color: var(--color-surface);
   border: 1px solid var(--color-primary);
@@ -40,62 +80,112 @@
   margin: 0.5rem;
 }
 
+/**
+ * Imágenes de portada en tarjetas
+ * Proporciona espaciado y bordes redondeados consistentes
+ */
 .card-img-top {
   margin: 0.75rem;
   border-radius: 0.25rem;
 }
 
+/**
+ * Títulos de tarjetas de libros
+ * Utiliza color primario para jerarquía visual clara
+ */
 .card-title {
   color: var(--color-primary);
 }
 
-/* Button styles */
+/* === Botones y elementos interactivos === */
+
+/**
+ * Botón de éxito (agregar al carrito)
+ * Implementa color secundario para acciones positivas
+ */
 .btn-success {
   background-color: var(--color-secondary);
   border-color: var(--color-secondary);
   color: var(--color-text-on-secondary);
 }
 
+/**
+ * Estado hover para botón de éxito
+ * Utiliza variación más oscura del color secundario
+ */
 .btn-success:hover {
   background-color: #18c874;
   border-color: #18c874;
 }
 
+/**
+ * Enlaces de texto (ej: Ver/Ocultar reseñas)
+ * Mantiene consistencia con el color primario del tema
+ */
 .btn-link {
   color: var(--color-primary);
 }
 
-/* Alert styles */
+/* === Alertas y mensajes === */
+
+/**
+ * Alertas de advertencia
+ * Utiliza color de advertencia con fondo de superficie
+ */
 .alert-warning {
   background-color: var(--color-surface);
   color: var(--color-warn);
   border-color: var(--color-warn);
 }
 
-/* Pagination styles */
+/* === Paginación === */
+
+/**
+ * Enlaces de paginación en estado normal
+ * Implementa colores del tema para navegación consistente
+ */
 .pagination .page-link {
   background-color: var(--color-surface);
   color: var(--color-primary);
   border: 1px solid var(--color-primary);
 }
 
+/**
+ * Página activa en paginación
+ * Destaca la página actual con colores invertidos
+ */
 .pagination .page-item.active .page-link {
   background-color: var(--color-primary);
   color: var(--color-text-on-primary);
   border-color: var(--color-primary);
 }
 
+/**
+ * Páginas deshabilitadas en paginación
+ * Utiliza colores atenuados para indicar estado inactivo
+ */
 .pagination .page-item.disabled .page-link {
   background-color: var(--color-surface);
   color: var(--color-text-base);
   border-color: var(--color-secondary);
 }
 
+/* === Elementos de reseñas === */
+
+/**
+ * Insignias de puntuación
+ * Mantiene consistencia con el color primario del tema
+ */
 .badge.bg-primary {
     background-color: var(--color-primary) !important;
 }
 
-/* Confirmation dialog styles */
+/* === Diálogo de confirmación === */
+
+/**
+ * Ventana emergente de confirmación
+ * Implementa posicionamiento fijo con animación y colores temáticos
+ */
 .confirmation-dialog {
   position: fixed;
   top: 24px;
@@ -110,6 +200,10 @@
   animation: fadeInOut 2s;
 }
 
+/**
+ * Animación para el diálogo de confirmación
+ * Efectos de entrada y salida suaves con transformaciones
+ */
 @keyframes fadeInOut {
   0% { opacity: 0; transform: translateY(-20px); }
   10% { opacity: 1; transform: translateY(0); }

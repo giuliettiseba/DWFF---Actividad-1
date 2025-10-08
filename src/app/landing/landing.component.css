@@ -1,3 +1,18 @@
+/**
+ * @fileoverview Hoja de estilos del componente de página de inicio
+ * @description Esta hoja de estilos define el diseño de la página principal con sección hero,
+ * tarjetas de características y elementos promocionales utilizando el sistema de diseño de BookStore.
+ * @author Equipo de desarrollo BookStore
+ * @version 1.0.0
+ * @since 2024
+ */
+
+/* === Sección hero principal === */
+
+/**
+ * Contenedor principal de la sección hero
+ * Implementa imagen de fondo con overlay, altura mínima y efectos de texto
+ */
 .hero {
   background: url('/hero.png') center/cover no-repeat;
   min-height: 320px;
@@ -7,47 +22,86 @@
   text-shadow: 0 2px 16px #000, 0 1px 0 #fff;
 }
 
+/**
+ * Título principal en la sección hero
+ * Aplica sombra de texto para mejor legibilidad sobre imagen de fondo
+ */
 .hero h1 {
   color: var(--color-text-on-primary);
   text-shadow: 0 2px 16px #000;
 }
 
+/**
+ * Texto destacado dentro del título hero
+ * Utiliza color secundario para crear contraste visual
+ */
 .hero .display-4 span {
   color: var(--color-secondary);
   text-shadow: 0 2px 16px #000;
 }
 
+/**
+ * Subtítulo de la sección hero
+ * Mantiene legibilidad con sombra de texto reducida
+ */
 .hero .lead {
   color: var(--color-text-on-primary);
   text-shadow: 0 2px 8px #000;
 }
 
+/* === Tarjetas de características === */
+
+/**
+ * Estilos base para tarjetas de características
+ * Utiliza colores del sistema de diseño y variables CSS personalizadas
+ */
 .card {
   background-color: var(--color-surface);
   border: 1px solid var(--color-primary);
   color: var(--color-text-base);
 }
 
+/**
+ * Variante de tarjeta con borde secundario
+ * Selector específico para la segunda tarjeta en el layout
+ */
 .card:nth-child(2) .card {
     border: 1px solid var(--color-secondary);
 }
 
+/**
+ * Títulos de tarjetas con color primario
+ * Mantiene consistencia con el sistema de diseño
+ */
 .card-title {
   color: var(--color-primary);
 }
 
+/**
+ * Título de la segunda tarjeta con color secundario
+ * Proporciona variación visual en el diseño
+ */
 .card:nth-child(2) .card-title {
     color: var(--color-secondary);
 }
 
+/* === Botones y elementos interactivos === */
+
+/**
+ * Botón principal de llamada a la acción
+ * Implementa colores del tema con estados hover
+ */
 .btn-primary {
   background-color: var(--color-primary);
   border-color: var(--color-primary);
   color: var(--color-text-on-primary);
 }
 
+/**
+ * Estado hover para botón principal
+ * Utiliza una variación más oscura del color primario
+ */
 .btn-primary:hover {
   background-color: #6a16d3;
   border-color: #6a16d3;
 }
-

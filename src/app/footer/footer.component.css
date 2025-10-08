@@ -1,3 +1,18 @@
+/**
+ * @fileoverview Hoja de estilos del componente de pie de página
+ * @description Esta hoja de estilos define el diseño del footer con gradientes temáticos,
+ * enlaces organizados y diseño responsive para diferentes dispositivos.
+ * @author Equipo de desarrollo BookStore
+ * @version 1.0.0
+ * @since 2024
+ */
+
+/* === Estilos principales del pie de página === */
+
+/**
+ * Contenedor principal del pie de página
+ * Implementa fondo con gradiente sutil y borde superior temático
+ */
 .app-footer {
   background: linear-gradient(135deg, rgba(129,29,236,0.07), rgba(29,236,129,0.07));
   backdrop-filter: blur(4px);
@@ -5,12 +20,26 @@
   color: var(--color-text-base);
   font-size: 0.95rem;
 }
+
+/**
+ * Enlaces dentro del pie de página
+ * Utiliza colores del sistema de diseño con transiciones suaves
+ */
 .app-footer a {
   color: var(--color-primary);
   text-decoration: none;
   transition: color .2s;
 }
-.app-footer a:hover { color: var(--color-secondary); }
+
+/** Estado hover para enlaces del footer */
+.app-footer a:hover {
+  color: var(--color-secondary);
+}
+
+/**
+ * Texto de marca en el pie de página
+ * Implementa gradiente de texto utilizando las variables del tema
+ */
 .app-footer .brand {
   font-weight: 700;
   font-size: 1.25rem;
@@ -18,16 +47,84 @@
   -webkit-background-clip: text;
   color: transparent;
 }
-.app-footer .section { font-weight: 600; margin-bottom: .5rem; }
-.footer-links li { margin-bottom: .25rem; }
-.footer-links a.active { color: var(--color-secondary); font-weight: 600; }
-.divider { border: none; height: 1px; background: linear-gradient(90deg, var(--color-primary), var(--color-secondary)); opacity: .4; }
-.sub-footer { gap: .75rem; }
-.credits .heart { color: var(--color-warn); }
 
-@media (max-width: 768px) {
-  .app-footer { text-align: center; }
-  .footer-links li { display: inline-block; margin: 0 .5rem .5rem; }
-  .sub-footer { flex-direction: column; }
+/** Títulos de sección en el footer */
+.app-footer .section {
+  font-weight: 600;
+  margin-bottom: .5rem;
 }
 
+/* === Listas de enlaces === */
+
+/**
+ * Items individuales en listas de enlaces
+ * Proporciona espaciado vertical consistente
+ */
+.footer-links li {
+  margin-bottom: .25rem;
+}
+
+/**
+ * Enlaces activos en el footer
+ * Destaca la página actual con color secundario y peso de fuente mayor
+ */
+.footer-links a.active {
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+
+/* === Elementos decorativos === */
+
+/**
+ * Divisor horizontal con gradiente
+ * Utiliza las variables del tema para mantener consistencia visual
+ */
+.divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  opacity: .4;
+}
+
+/**
+ * Sección inferior del footer
+ * Proporciona espaciado entre elementos en layout flexible
+ */
+.sub-footer {
+  gap: .75rem;
+}
+
+/**
+ * Icono de corazón en créditos
+ * Utiliza color de advertencia para destacar el elemento emotivo
+ */
+.credits .heart {
+  color: var(--color-warn);
+}
+
+/* === Diseño responsive === */
+
+/**
+ * Adaptaciones para dispositivos móviles
+ * Centra contenido y reorganiza enlaces para mejor usabilidad táctil
+ */
+@media (max-width: 768px) {
+  /** Centrar todo el contenido del footer en móvil */
+  .app-footer {
+    text-align: center;
+  }
+
+  /**
+   * Enlaces en línea para móvil
+   * Facilita la navegación en pantallas pequeñas
+   */
+  .footer-links li {
+    display: inline-block;
+    margin: 0 .5rem .5rem;
+  }
+
+  /** Layout vertical para información adicional en móvil */
+  .sub-footer {
+    flex-direction: column;
+  }
+}

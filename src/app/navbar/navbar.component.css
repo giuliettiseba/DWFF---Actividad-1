@@ -1,3 +1,18 @@
+/**
+ * @fileoverview Hoja de estilos del componente de navegación
+ * @description Esta hoja de estilos define el diseño responsive de la barra de navegación,
+ * incluyendo el menú hamburguesa para dispositivos móviles y efectos de interacción.
+ * @author Equipo de desarrollo BookStore
+ * @version 1.0.0
+ * @since 2024
+ */
+
+/* === Estilos base de la barra de navegación === */
+
+/**
+ * Contenedor principal de la barra de navegación
+ * Implementa un diseño centrado con ancho máximo y sombra sutil
+ */
 .navbar {
   width: 1200px;
   max-width: 98vw;
@@ -12,6 +27,10 @@
   position: relative;
 }
 
+/**
+ * Sección de marca/logo de la aplicación
+ * Agrupa logo y texto de marca con espaciado consistente
+ */
 .navbar-brand {
   display: flex;
   align-items: center;
@@ -19,11 +38,16 @@
   text-decoration: none;
 }
 
+/** Dimensiones del logo de la aplicación */
 .navbar-logo {
   width: 36px;
   height: 36px;
 }
 
+/**
+ * Título de la marca
+ * Utiliza tipografía destacada con espaciado de caracteres
+ */
 .navbar-title {
   font-size: 1.5rem;
   font-weight: bold;
@@ -31,7 +55,12 @@
   letter-spacing: 1px;
 }
 
-/* Links container */
+/* === Contenedor de enlaces de navegación === */
+
+/**
+ * Contenedor de enlaces de navegación
+ * Utiliza flexbox para alineación y incluye transiciones para el menú móvil
+ */
 .navbar-links {
   display: flex;
   gap: 32px;
@@ -39,6 +68,10 @@
   transition: max-height .3s ease, opacity .25s ease;
 }
 
+/**
+ * Estilos individuales para enlaces de navegación
+ * Incluye estados hover y active con transiciones suaves
+ */
 .navbar-links a {
   color: #444;
   text-decoration: none;
@@ -52,23 +85,37 @@
   align-items: center;
 }
 
+/**
+ * Estados activo y hover para enlaces
+ * Utiliza variables CSS para mantener consistencia con el tema
+ */
 .navbar-links a.active,
 .navbar-links a:hover {
   background: var(--color-primary);
   color: var(--color-text-on-primary);
 }
 
-/* Hamburger button */
+/* === Botón menú hamburguesa (móvil) === */
+
+/**
+ * Botón hamburguesa para navegación móvil
+ * Oculto por defecto, se muestra solo en pantallas pequeñas
+ */
 .menu-toggle {
   background: transparent;
   border: none;
-  display: none; /* hidden on desktop */
+  display: none; /* oculto en escritorio */
   flex-direction: column;
   gap: 5px;
   padding: 8px 4px;
   cursor: pointer;
   outline: none;
 }
+
+/**
+ * Líneas individuales del icono hamburguesa
+ * Implementa transiciones para posibles animaciones futuras
+ */
 .menu-toggle span {
   display: block;
   width: 28px;
@@ -77,49 +124,86 @@
   border-radius: 2px;
   transition: transform .3s, opacity .3s;
 }
+
+/**
+ * Indicador de foco accesible para el botón hamburguesa
+ * Mejora la accesibilidad para navegación por teclado
+ */
 .menu-toggle:focus-visible span {
   outline: 2px solid var(--color-secondary);
   outline-offset: 4px;
 }
 
-/* Mobile styles */
+/* === Diseño responsive para dispositivos móviles === */
+
+/**
+ * Media query para pantallas pequeñas (tablets y móviles)
+ * Transforma el layout horizontal en vertical con menú colapsable
+ */
 @media (max-width: 900px) {
+  /**
+   * Adaptación del contenedor navbar para móvil
+   * Cambia a layout vertical y ajusta espaciado
+   */
   .navbar {
     flex-direction: column;
     align-items: stretch;
     padding: 12px 16px;
   }
 
-  .menu-toggle { /* show hamburger */
+  /**
+   * Mostrar botón hamburguesa en móvil
+   * Posicionamiento absoluto para mantener el header compacto
+   */
+  .menu-toggle {
     display: flex;
     position: absolute;
     top: 16px;
     right: 16px;
   }
 
+  /**
+   * Contenedor de enlaces en modo móvil
+   * Implementa animación de altura para efecto de deslizamiento
+   */
   .navbar-links {
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    max-height: 0; /* collapsed */
+    max-height: 0; /* estado colapsado */
     overflow: hidden;
     opacity: 0;
     margin-top: 8px;
     gap: 4px;
     padding: 0 4px;
   }
+
+  /**
+   * Estado expandido del menú móvil
+   * Se activa mediante clase CSS desde el componente TypeScript
+   */
   .navbar-links.open {
-    max-height: 400px; /* enough for links */
+    max-height: 400px; /* altura suficiente para todos los enlaces */
     opacity: 1;
     padding-bottom: 8px;
   }
+
+  /**
+   * Enlaces individuales en modo móvil
+   * Ocupan todo el ancho disponible para facilitar la interacción táctil
+   */
   .navbar-links a {
     width: 100%;
     padding: 10px 12px;
   }
 }
 
-/* Slight badge alignment on buttons */
+/* === Componentes auxiliares === */
+
+/**
+ * Insignia de contador (ej: número de items en carrito)
+ * Mejora la legibilidad con tamaño y espaciado optimizados
+ */
 .badge {
   font-size: .7rem;
   padding: 4px 6px;

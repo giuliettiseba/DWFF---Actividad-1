@@ -1,88 +1,179 @@
+/**
+ * @fileoverview Hoja de estilos del componente de carrito de compras
+ * @description Esta hoja de estilos define el diseño del carrito, tarjetas de productos,
+ * formularios de pago, modales y elementos de interfaz del proceso de compra.
+ * @author Equipo de desarrollo BookStore
+ * @version 1.0.0
+ * @since 2024
+ */
+
+/* === Encabezado de página === */
+
+/**
+ * Contenedor del encabezado del carrito
+ * Reutiliza estilos globales para consistencia visual
+ */
 .header {
   background-color: var(--color-surface);
   border-radius: 0.5rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+/**
+ * Título del encabezado del carrito
+ * Aplica color primario para jerarquía visual
+ */
 .header h1 span {
   color: var(--color-primary);
 }
 
+/* === Tarjetas de productos en carrito === */
+
+/**
+ * Estilos base para tarjetas de productos en carrito
+ * Mantiene consistencia con el sistema de tarjetas global
+ */
 .card {
   background-color: var(--color-surface);
   border: 1px solid var(--color-primary);
   color: var(--color-text-base);
 }
 
+/**
+ * Imágenes de productos en carrito
+ * Proporciona espaciado uniforme y bordes redondeados
+ */
 .card-img-top {
   margin: 0.75rem;
   border-radius: 0.25rem;
 }
 
+/**
+ * Títulos de productos en carrito
+ * Utiliza color primario para destacar información clave
+ */
 .card-title {
   color: var(--color-primary);
 }
 
+/* === Botones de acción === */
+
+/**
+ * Botón de eliminar producto (peligro)
+ * Implementa color de advertencia para acciones destructivas
+ */
 .btn-danger {
   background-color: var(--color-warn);
   border-color: var(--color-warn);
   color: var(--color-text-on-primary);
 }
 
+/**
+ * Estado hover para botón de eliminar
+ * Utiliza variación más oscura del color de advertencia
+ */
 .btn-danger:hover {
   background-color: #d8731a;
   border-color: #d8731a;
 }
 
+/**
+ * Botón primario (finalizar compra)
+ * Mantiene consistencia con botones principales de la aplicación
+ */
 .btn-primary {
   background-color: var(--color-primary);
   border-color: var(--color-primary);
   color: var(--color-text-on-primary);
 }
 
+/**
+ * Estado hover para botón primario
+ * Proporciona feedback visual durante la interacción
+ */
 .btn-primary:hover {
   background-color: #6a16d3;
   border-color: #6a16d3;
 }
 
+/* === Alertas y mensajes informativos === */
+
+/**
+ * Alerta de advertencia (carrito vacío)
+ * Utiliza colores del sistema para mensajes de estado
+ */
 .alert-warning {
   background-color: var(--color-surface);
   color: var(--color-warn);
   border-color: var(--color-warn);
 }
 
+/**
+ * Alerta informativa (ayuda al usuario)
+ * Implementa color secundario para información complementaria
+ */
 .alert-info {
   background-color: var(--color-surface);
   color: var(--color-text-base);
   border: 1px solid var(--color-secondary);
 }
 
+/* === Sección de totales === */
+
+/**
+ * Contenedor de resumen de totales
+ * Destaca información financiera importante
+ */
 .total-section {
   background-color: var(--color-surface);
   border: 1px solid var(--color-secondary);
   border-radius: 0.25rem;
 }
 
+/* === Modal de pago === */
+
+/**
+ * Contenido del modal de pago
+ * Aplica tema personalizado con bordes temáticos
+ */
 .modal-content {
   background-color: var(--color-background);
   color: var(--color-text-base);
   border: 1px solid var(--color-primary);
 }
 
+/**
+ * Encabezado del modal de pago
+ * Utiliza borde inferior temático para separación visual
+ */
 .modal-header {
   border-bottom: 1px solid var(--color-primary);
 }
 
+/**
+ * Pie del modal de pago
+ * Mantiene consistencia visual con el encabezado
+ */
 .modal-footer {
   border-top: 1px solid var(--color-primary);
 }
 
+/* === Formularios de pago === */
+
+/**
+ * Campos de formulario en modal de pago
+ * Implementa estilos consistentes con el resto de la aplicación
+ */
 .form-control {
   background-color: var(--color-surface);
   color: var(--color-text-base);
   border: 1px solid var(--color-secondary);
 }
 
+/**
+ * Estados de foco para campos de pago
+ * Proporciona feedback visual claro durante la entrada de datos
+ */
 .form-control:focus {
   background-color: var(--color-surface);
   color: var(--color-text-base);
@@ -90,11 +181,21 @@
   box-shadow: 0 0 0 0.25rem rgba(129, 29, 236, 0.25);
 }
 
+/**
+ * Placeholder para campos de pago
+ * Optimiza legibilidad en formularios críticos
+ */
 .form-control::placeholder {
   color: var(--color-text-base);
   opacity: 0.7;
 }
 
+/* === Elementos de interfaz específicos === */
+
+/**
+ * Botón de cerrar modal
+ * Aplica filtro para mejorar visibilidad en tema personalizado
+ */
 .btn-close {
   filter: invert(1) grayscale(100%) brightness(200%);
 }

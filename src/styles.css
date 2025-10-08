@@ -1,18 +1,65 @@
+/**
+ * @fileoverview Hoja de estilos globales de la aplicación BookStore
+ * @description Este archivo contiene los estilos CSS globales que se aplican a toda la aplicación,
+ * incluyendo variables CSS personalizadas, reset de estilos y clases utilitarias.
+ * @author Equipo de desarrollo BookStore
+ * @version 1.0.0
+ * @since 2024
+ */
+
+/* Importación de Bootstrap CSS para sistema de grid y componentes base */
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+/**
+ * Variables CSS personalizadas (Custom Properties)
+ * Define la paleta de colores y gradientes utilizados en toda la aplicación
+ * siguiendo el sistema de diseño establecido para BookStore
+ */
 :root {
+  /* === Colores principales del sistema de diseño === */
+
+  /** Color primario (morado): Utilizado para botones principales, enlaces y elementos destacados */
   --color-primary: #811dec;
+
+  /** Color secundario (verde): Utilizado para botones de acción positiva y elementos de éxito */
   --color-secondary: #1dec81;
+
+  /** Color de advertencia (naranja): Utilizado para alertas, botones de eliminación y estados de advertencia */
   --color-warn: #ec811d;
-  --color-background: #fffafa; /* nieve */
+
+  /* === Colores de fondo y superficie === */
+
+  /** Color de fondo principal (nieve): Fondo base de toda la aplicación */
+  --color-background: #fffafa;
+
+  /** Color de superficie: Utilizado para tarjetas, modales y elementos elevados */
   --color-surface: #f8f8ff;
+
+  /* === Colores de texto === */
+
+  /** Color de texto base: Color principal para todo el contenido textual */
   --color-text-base: #212121;
+
+  /** Color de texto sobre fondo primario: Garantiza contraste adecuado */
   --color-text-on-primary: #ffffff;
+
+  /** Color de texto sobre fondo secundario: Optimizado para legibilidad */
   --color-text-on-secondary: #000000;
+
+  /* === Gradientes personalizados === */
+
+  /** Gradiente para encabezados de página: Combina colores primario y secundario */
   --header-gradient: linear-gradient(135deg, rgba(129,29,236,0.85), rgba(29,236,129,0.85));
 }
 
-html, body { height: 100%; }
+/* === Reset y configuración base === */
+
+/** Configuración global para html y body */
+html, body {
+  height: 100%;
+}
+
+/** Estilos base del body */
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -20,26 +67,72 @@ body {
   color: var(--color-text-base);
 }
 
-/* Shared page header (used in book-search & cart) */
+/* === Componentes reutilizables === */
+
+/**
+ * Encabezado compartido para páginas internas
+ * Utilizado en componentes de búsqueda y carrito para mantener consistencia visual
+ */
 .page-header {
   background: var(--header-gradient);
   color: var(--color-text-on-primary);
   border-radius: 0.5rem;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
-.page-header h1 span { color: #fff; }
-.page-header .lead { color: #f0f0f0; }
 
-/* Utility for feature cards theme variants */
-.feature-card-primary { border: 2px solid var(--color-primary); }
-.feature-card-secondary { border: 2px solid var(--color-secondary); }
-.feature-card-warn { border: 2px solid var(--color-warn); }
+/** Título dentro del encabezado de página */
+.page-header h1 span {
+  color: #fff;
+}
 
-.feature-card-primary .card-title { color: var(--color-primary); }
-.feature-card-secondary .card-title { color: var(--color-secondary); }
-.feature-card-warn .card-title { color: var(--color-warn); }
+/** Subtítulo dentro del encabezado de página */
+.page-header .lead {
+  color: #f0f0f0;
+}
 
-/* Generic themed card */
+/* === Clases utilitarias para tarjetas temáticas === */
+
+/**
+ * Variantes de tarjetas con colores del sistema de diseño
+ * Permiten aplicar diferentes esquemas de color según el contexto
+ */
+
+/** Tarjeta con borde y título en color primario */
+.feature-card-primary {
+  border: 2px solid var(--color-primary);
+}
+
+/** Tarjeta con borde y título en color secundario */
+.feature-card-secondary {
+  border: 2px solid var(--color-secondary);
+}
+
+/** Tarjeta con borde y título en color de advertencia */
+.feature-card-warn {
+  border: 2px solid var(--color-warn);
+}
+
+/** Títulos de tarjetas con color primario */
+.feature-card-primary .card-title {
+  color: var(--color-primary);
+}
+
+/** Títulos de tarjetas con color secundario */
+.feature-card-secondary .card-title {
+  color: var(--color-secondary);
+}
+
+/** Títulos de tarjetas con color de advertencia */
+.feature-card-warn .card-title {
+  color: var(--color-warn);
+}
+
+/* === Estilos para tarjetas genéricas === */
+
+/**
+ * Clase base para tarjetas temáticas con interacciones
+ * Proporciona estilos consistentes y efectos hover para todas las tarjetas
+ */
 .themed-card {
   background: var(--color-surface);
   border: 1px solid var(--color-primary);
@@ -47,17 +140,49 @@ body {
   border-radius: 0.5rem;
   transition: border-color .25s, box-shadow .25s;
 }
+
+/** Efecto hover para tarjetas temáticas */
 .themed-card:hover {
   border-color: var(--color-secondary);
   box-shadow: 0 4px 14px -2px rgba(0,0,0,0.12);
 }
 
-/* Consistent card image spacing */
-.card-img-top { background: transparent; }
+/* === Configuración de imágenes === */
 
-/* Placeholder + select visibility */
-.form-control::placeholder { color: rgba(33,33,33,0.55); }
-.form-control:focus::placeholder { color: rgba(33,33,33,0.35); }
-.form-select { color: var(--color-text-base); }
-/* Make the default empty option lighter */
-.form-select option[value=""] { color: rgba(33,33,33,0.55); }
+/**
+ * Configuración base para imágenes de portada de tarjetas
+ * Garantiza fondo transparente para imágenes de diferentes tamaños
+ */
+.card-img-top {
+  background: transparent;
+}
+
+/* === Mejoras de accesibilidad y usabilidad === */
+
+/**
+ * Estilos para placeholders de formularios
+ * Mejora la visibilidad y contraste de texto de ayuda
+ */
+
+/** Color base para texto placeholder */
+.form-control::placeholder {
+  color: rgba(33,33,33,0.55);
+}
+
+/** Color placeholder cuando el campo está en foco */
+.form-control:focus::placeholder {
+  color: rgba(33,33,33,0.35);
+}
+
+/** Color de texto para elementos select */
+.form-select {
+  color: var(--color-text-base);
+}
+
+/**
+ * Estilo especial para opción vacía en select
+ * Mejora la distinción visual del placeholder en dropdowns
+ */
+.form-select option[value=""] {
+  color: rgba(33,33,33,0.55);
+}
