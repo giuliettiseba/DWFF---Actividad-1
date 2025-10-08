@@ -342,7 +342,16 @@ export class BookSearchComponent implements OnInit {
     if (!review || !review.puntuacion || !review.comentario) return;
 
     this.submittingReview[bookId] = true;
-    this.bookService.addReview(bookId, review).subscribe({
+
+    // Crear objeto de reseña completo con todos los campos requeridos
+    const reviewData: Omit<Review, 'id'> = {
+      bookId: bookId,
+      puntuacion: review.puntuacion,
+      comentario: review.comentario,
+      fecha: new Date().toISOString().split('T')[0] // Fecha actual en formato YYYY-MM-DD
+    };
+
+    this.bookService.addReview(bookId, reviewData).subscribe({
       next: (created) => {
         if (!this.reviews[bookId]) this.reviews[bookId] = [];
         this.reviews[bookId].push(created);
