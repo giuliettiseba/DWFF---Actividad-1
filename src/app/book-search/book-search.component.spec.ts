@@ -38,7 +38,8 @@ describe('BookSearchComponent', () => {
       {id: 2, titulo: 'X', autor: 'Y', "año": 2021, categoria: 'Z', imagen: '', sinopsis: '', precio: 12}
     ];
     component.filters.title = 'A';
-    component.applyFilters();
+    // Call applyFilters with fromApi=true to avoid calling fetchBooks()
+    component.applyFilters(true);
     expect(component.filteredBooks.length).toBe(1);
     expect(component.filteredBooks[0].titulo).toBe('A');
   });
