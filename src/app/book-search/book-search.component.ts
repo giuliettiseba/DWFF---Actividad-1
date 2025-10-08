@@ -249,6 +249,7 @@ export class BookSearchComponent implements OnInit {
   /**
    * @method goToPage
    * @description Navega a una página específica si está dentro del rango válido.
+   * Automáticamente desplaza la vista al inicio de la página.
    * @param {number} page - Número de página destino
    * @returns {void}
    */
@@ -256,30 +257,38 @@ export class BookSearchComponent implements OnInit {
     if (page >= 1 && page <= this.totalPages) {
       this.page = page;
       this.paginate();
+      // Desplazar al inicio de la página para mejor experiencia de usuario
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
   /**
    * @method nextPage
    * @description Avanza a la siguiente página si existe.
+   * Automáticamente desplaza la vista al inicio de la página.
    * @returns {void}
    */
   nextPage(): void {
     if (this.page < this.totalPages) {
       this.page++;
       this.paginate();
+      // Desplazar al inicio de la página para mejor experiencia de usuario
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
   /**
    * @method prevPage
    * @description Retrocede a la página anterior si existe.
+   * Automáticamente desplaza la vista al inicio de la página.
    * @returns {void}
    */
   prevPage(): void {
     if (this.page > 1) {
       this.page--;
       this.paginate();
+      // Desplazar al inicio de la página para mejor experiencia de usuario
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 

@@ -51,11 +51,20 @@
 }
 
 /**
- * Estilo especial para select en estado pristine
- * Mejora la visibilidad del texto placeholder en dropdowns
+ * Estilo para select en cualquier estado
+ * Asegura visibilidad consistente del texto en todos los estados
  */
-.form-select.ng-pristine {
-  color: rgba(255, 255, 255, 0.7);
+.form-select {
+  color: var(--color-text-base);
+}
+
+/**
+ * Opciones del dropdown select
+ * Garantiza legibilidad óptima de todas las opciones
+ */
+.form-select option {
+  background-color: var(--color-surface);
+  color: var(--color-text-base);
 }
 
 /**
