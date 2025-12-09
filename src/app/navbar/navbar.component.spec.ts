@@ -25,7 +25,9 @@ describe('NavbarComponent', () => {
   it('should render navigation links', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.textContent).toContain('Inicio');
-    expect(compiled.textContent).toContain('Buscar Libros');
+    expect(compiled.textContent).toContain('Libros');
+    expect(compiled.textContent).toContain('Cafetería');
+    expect(compiled.textContent).toContain('Contacto');
     expect(compiled.textContent).toContain('Carrito');
   });
 });

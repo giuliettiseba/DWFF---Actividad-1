@@ -1,0 +1,365 @@
+/**
+ * Estilos del Formulario de Contacto
+ *
+ * @description Estilos para el formulario reactivo de contacto
+ * Incluye validaciones visuales y diseño responsive
+ * @author Sistema Nexus
+ * @date 2025-12-08
+ */
+
+/* Contenedor principal */
+.contact-form-page {
+  background-color: #fffafa;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #811dec 0%, #9966ff 100%);
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  opacity: 0.95;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+/* Wrapper del formulario */
+.form-wrapper {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 3rem;
+}
+
+/* Contenedor del formulario */
+.form-container {
+  background: white;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Grupos de formulario */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #811dec;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.9rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #811dec;
+  box-shadow: 0 0 0 3px rgba(129, 29, 236, 0.1);
+}
+
+.form-group input.error,
+.form-group textarea.error {
+  border-color: #ff4444;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+/* Mensajes de error */
+.mensaje-error {
+  display: block;
+  color: #ff4444;
+  font-size: 0.85rem;
+  margin-top: 0.4rem;
+  font-weight: 500;
+}
+
+/* Información del mensaje */
+.mensaje-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.3rem;
+}
+
+.contador-caracteres {
+  color: #6e6c75;
+  font-size: 0.85rem;
+  margin-left: auto;
+}
+
+/* Acciones del formulario */
+.form-actions {
+  margin-top: 2rem;
+}
+
+.btn-enviar {
+  width: 100%;
+  padding: 1.2rem 2rem;
+  background-color: #1dec81;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-enviar:hover:not(:disabled) {
+  background-color: #17c46f;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(29, 236, 129, 0.3);
+}
+
+.btn-enviar:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Nota del formulario */
+.form-note {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #f8f5ff;
+  border-left: 4px solid #811dec;
+  border-radius: 4px;
+  color: #6e6c75;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Contenedor de información */
+.info-container {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  height: fit-content;
+}
+
+.info-container h2 {
+  color: #811dec;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+/* Items de información */
+.info-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.info-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.info-content h3 {
+  color: #811dec;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.info-content p {
+  color: #6e6c75;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Redes sociales */
+.social-media {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid #e0e0e0;
+}
+
+.social-media h3 {
+  color: #811dec;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-link {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f5ff;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: #811dec;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(129, 29, 236, 0.3);
+}
+
+/* Confirmación */
+.confirmacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.confirmacion-contenido {
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(129, 29, 236, 0.15);
+}
+
+.confirmacion-icono {
+  width: 80px;
+  height: 80px;
+  background: #1dec81;
+  color: white;
+  font-size: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+  animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.confirmacion-contenido h2 {
+  color: #811dec;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.mensaje-exito {
+  color: #6e6c75;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.mensaje-adicional {
+  color: #6e6c75;
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .form-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .header h1 {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .form-container,
+  .info-container {
+    padding: 2rem;
+  }
+
+  .container {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 40px 20px;
+  }
+
+  .form-container,
+  .info-container {
+    padding: 1.5rem;
+  }
+
+  .confirmacion-contenido {
+    padding: 2rem;
+  }
+
+  .confirmacion-contenido h2 {
+    font-size: 1.5rem;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+}
+

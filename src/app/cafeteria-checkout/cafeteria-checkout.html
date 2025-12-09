@@ -1,0 +1,210 @@
+<!--
+  Template de Checkout de Cafetería
+
+  Muestra el resumen del pedido y formulario de entrega
+  @author Sistema de Cafetería Nexus
+  @date 2025-12-08
+-->
+
+<div class="cafeteria-checkout">
+  @if (!pedidoProcesado) {
+    <!-- Header -->
+    <div class="header">
+      <div class="container">
+        <h1>Finalizar Pedido</h1>
+        <p class="subtitle">Revisa tu pedido y selecciona la modalidad de entrega</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="checkout-grid">
+        <!-- Resumen del pedido -->
+        <div class="resumen-pedido">
+          <h2>Tu Pedido</h2>
+
+          <div class="items-lista">
+            @for (item of orderService.items(); track item.producto.id) {
+              <div class="item-card">
+                <img [src]="item.producto.imagen" [alt]="item.producto.nombre">
+                <div class="item-info">
+                  <h3>{{ item.producto.nombre }}</h3>
+                  <p class="item-precio">{{ formatearPrecio(item.producto.precio) }}€</p>
+                </div>
+                <div class="item-cantidad">
+                  <button
+                    class="btn-cantidad"
+                    (click)="actualizarCantidad(item.producto.id, item.cantidad - 1)">
+                    -
+                  </button>
+                  <span>{{ item.cantidad }}</span>
+                  <button
+                    class="btn-cantidad"
+                    (click)="actualizarCantidad(item.producto.id, item.cantidad + 1)">
+                    +
+                  </button>
+                </div>
+                <div class="item-subtotal">
+                  {{ formatearPrecio(item.producto.precio * item.cantidad) }}€
+                </div>
+                <button
+                  class="btn-eliminar"
+                  (click)="eliminarProducto(item.producto.id)"
+                  title="Eliminar producto">
+                  ×
+                </button>
+              </div>
+            }
+          </div>
+
+          <div class="resumen-total">
+            <div class="total-row">
+              <span>Subtotal:</span>
+              <span>{{ formatearPrecio(orderService.total()) }}€</span>
+            </div>
+            <div class="total-row destacado">
+              <span>Total:</span>
+              <span>{{ formatearPrecio(orderService.total()) }}€</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario de entrega -->
+        <div class="formulario-entrega">
+          <h2>Información de Entrega</h2>
+
+          <form [formGroup]="checkoutForm" (ngSubmit)="confirmarPedido()">
+            <!-- Nombre del cliente -->
+            <div class="form-group">
+              <label for="nombreCliente">Nombre *</label>
+              <input
+                type="text"
+                id="nombreCliente"
+                formControlName="nombreCliente"
+                placeholder="Tu nombre completo"
+                [class.error]="tienError('nombreCliente')">
+              @if (tienError('nombreCliente')) {
+                <span class="mensaje-error">{{ obtenerMensajeError('nombreCliente') }}</span>
+              }
+            </div>
+
+            <!-- Modalidad de entrega -->
+            <div class="form-group">
+              <label>Modalidad de Entrega *</label>
+
+              <div class="modalidad-opciones">
+                <label class="modalidad-opcion" [class.selected]="checkoutForm.get('modalidad')?.value === 'mostrador'">
+                  <input
+                    type="radio"
+                    formControlName="modalidad"
+                    value="mostrador">
+                  <div class="opcion-contenido">
+                    <span class="opcion-icon">🥤</span>
+                    <div>
+                      <strong>Recogida en Mostrador</strong>
+                      <p>Recoge tu pedido cuando esté listo</p>
+                    </div>
+                  </div>
+                </label>
+
+                <label class="modalidad-opcion" [class.selected]="checkoutForm.get('modalidad')?.value === 'mesa'">
+                  <input
+                    type="radio"
+                    formControlName="modalidad"
+                    value="mesa">
+                  <div class="opcion-contenido">
+                    <span class="opcion-icon">🪑</span>
+                    <div>
+                      <strong>Mesa de Coworking</strong>
+                      <p>Te lo llevamos a tu mesa</p>
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Número de mesa (condicional) -->
+            @if (checkoutForm.get('modalidad')?.value === 'mesa') {
+              <div class="form-group">
+                <label for="numeroMesa">Número de Mesa *</label>
+                <input
+                  type="number"
+                  id="numeroMesa"
+                  formControlName="numeroMesa"
+                  placeholder="Ej: 12"
+                  min="1"
+                  max="50"
+                  [class.error]="tienError('numeroMesa')">
+                @if (tienError('numeroMesa')) {
+                  <span class="mensaje-error">{{ obtenerMensajeError('numeroMesa') }}</span>
+                }
+              </div>
+            }
+
+            <!-- Botones de acción -->
+            <div class="form-actions">
+              <a routerLink="/cafeteria/productos" class="btn btn-secondary">
+                ← Seguir comprando
+              </a>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="checkoutForm.invalid">
+                Confirmar Pedido
+              </button>
+            </div>
+          </form>
+
+          <!-- Información adicional -->
+          <div class="info-adicional">
+            <h3>Información Importante</h3>
+            <ul>
+              <li>El tiempo de preparación estimado es de 10-15 minutos</li>
+              <li>Recibirás una notificación cuando tu pedido esté listo</li>
+              <li>El pago se realiza al recibir el pedido</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <!-- Confirmación del pedido -->
+    <div class="confirmacion">
+      <div class="confirmacion-contenido">
+        <div class="confirmacion-icono">✓</div>
+        <h1>¡Pedido Confirmado!</h1>
+        <p class="numero-pedido">Número de pedido: #{{ numeroPedido }}</p>
+
+        @if (checkoutForm.get('modalidad')?.value === 'mesa') {
+          <p class="mensaje-confirmacion">
+            Te llevaremos tu pedido a la <strong>mesa {{ checkoutForm.get('numeroMesa')?.value }}</strong>
+            en aproximadamente 10-15 minutos.
+          </p>
+        } @else {
+          <p class="mensaje-confirmacion">
+            Tu pedido estará listo para recoger en el <strong>mostrador</strong>
+            en aproximadamente 10-15 minutos.
+          </p>
+        }
+
+        <div class="resumen-confirmacion">
+          <h3>Resumen del Pedido</h3>
+          @for (item of orderService.items(); track item.producto.id) {
+            <div class="item-confirmacion">
+              <span>{{ item.cantidad }}x {{ item.producto.nombre }}</span>
+              <span>{{ formatearPrecio(item.producto.precio * item.cantidad) }}€</span>
+            </div>
+          }
+          <div class="total-confirmacion">
+            <strong>Total:</strong>
+            <strong>{{ formatearPrecio(orderService.total()) }}€</strong>
+          </div>
+        </div>
+
+        <p class="mensaje-redireccion">Serás redirigido a la página principal en unos segundos...</p>
+
+        <a routerLink="/cafeteria" class="btn btn-primary">Volver al Inicio</a>
+      </div>
+    </div>
+  }
+</div>
+

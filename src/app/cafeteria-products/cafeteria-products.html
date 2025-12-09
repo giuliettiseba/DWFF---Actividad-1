@@ -1,0 +1,102 @@
+<!--
+  Template de Productos de Cafetería
+
+  Muestra el catálogo de productos con filtros por categoría
+  @author Sistema de Cafetería Nexus
+  @date 2025-12-08
+-->
+
+<div class="cafeteria-products">
+  <!-- Header -->
+  <div class="header">
+    <div class="container">
+      <h1>Nuestros Productos</h1>
+      <p class="subtitle">Selecciona tus productos favoritos y añádelos al carrito</p>
+    </div>
+  </div>
+
+  <!-- Mensaje de feedback -->
+  @if (mensajeAgregado) {
+    <div class="mensaje-exito">
+      {{ mensajeAgregado }}
+    </div>
+  }
+
+  <!-- Carrito flotante -->
+  @if (orderService.totalItems() > 0) {
+    <div class="carrito-flotante">
+      <div class="carrito-contenido">
+        <span class="carrito-items">🛒 {{ orderService.totalItems() }} items</span>
+        <span class="carrito-total">{{ orderService.total().toFixed(2) }}€</span>
+        <a routerLink="/cafeteria/checkout" class="btn-ir-checkout">Ir al Checkout</a>
+      </div>
+    </div>
+  }
+
+  <div class="container">
+    <!-- Filtros por categoría -->
+    <div class="filtros">
+      <button
+        class="filtro-btn"
+        [class.active]="categoriaSeleccionada === 'todos'"
+        (click)="filtrarPorCategoria('todos')">
+        Todos
+      </button>
+      <button
+        class="filtro-btn"
+        [class.active]="categoriaSeleccionada === 'cafe'"
+        (click)="filtrarPorCategoria('cafe')">
+        ☕ Cafés
+      </button>
+      <button
+        class="filtro-btn"
+        [class.active]="categoriaSeleccionada === 'bebida'"
+        (click)="filtrarPorCategoria('bebida')">
+        🥤 Bebidas
+      </button>
+      <button
+        class="filtro-btn"
+        [class.active]="categoriaSeleccionada === 'snack'"
+        (click)="filtrarPorCategoria('snack')">
+        🥐 Snacks
+      </button>
+    </div>
+
+    <!-- Grid de productos -->
+    <div class="productos-grid">
+      @for (producto of productos; track producto.id) {
+        <div class="producto-card">
+          <div class="producto-imagen">
+            <img [src]="producto.imagen" [alt]="producto.nombre">
+            <span class="producto-categoria">{{ producto.categoria }}</span>
+          </div>
+          <div class="producto-info">
+            <h3>{{ producto.nombre }}</h3>
+            <p class="producto-descripcion">{{ producto.descripcion }}</p>
+            <div class="producto-footer">
+              <span class="producto-precio">{{ formatearPrecio(producto.precio) }}€</span>
+              <button
+                class="btn-agregar"
+                (click)="agregarAlCarrito(producto)"
+                [disabled]="producto.disponible === false">
+                @if (producto.disponible === false) {
+                  No disponible
+                } @else {
+                  Agregar
+                }
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Mensaje si no hay productos -->
+    @if (productos.length === 0) {
+      <div class="no-productos">
+        <p>No hay productos disponibles en esta categoría</p>
+      </div>
+    }
+  </div>
+</div>
+

@@ -1,0 +1,165 @@
+<!--
+  Template de Formulario de Contacto
+
+  Formulario reactivo para contactar con el equipo de Nexus
+  @author Sistema Nexus
+  @date 2025-12-08
+-->
+
+<div class="contact-form-page">
+  <!-- Header -->
+  <div class="header">
+    <div class="container">
+      <h1>Contáctanos</h1>
+      <p class="subtitle">¿Tienes alguna pregunta o sugerencia? Nos encantaría escucharte</p>
+    </div>
+  </div>
+
+  <div class="container">
+    @if (!formularioEnviado) {
+      <!-- Formulario de contacto -->
+      <div class="form-wrapper">
+        <div class="form-container">
+          <form [formGroup]="contactForm" (ngSubmit)="enviarSolicitud()">
+            <!-- Nombre -->
+            <div class="form-group">
+              <label for="nombre">Nombre Completo *</label>
+              <input
+                type="text"
+                id="nombre"
+                formControlName="nombre"
+                placeholder="Tu nombre completo"
+                [class.error]="tienError('nombre')">
+              @if (tienError('nombre')) {
+                <span class="mensaje-error">{{ obtenerMensajeError('nombre') }}</span>
+              }
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="email">Correo Electrónico *</label>
+              <input
+                type="email"
+                id="email"
+                formControlName="email"
+                placeholder="tu@email.com"
+                [class.error]="tienError('email')">
+              @if (tienError('email')) {
+                <span class="mensaje-error">{{ obtenerMensajeError('email') }}</span>
+              }
+            </div>
+
+            <!-- Asunto -->
+            <div class="form-group">
+              <label for="asunto">Asunto *</label>
+              <input
+                type="text"
+                id="asunto"
+                formControlName="asunto"
+                placeholder="¿Sobre qué quieres contactarnos?"
+                [class.error]="tienError('asunto')">
+              @if (tienError('asunto')) {
+                <span class="mensaje-error">{{ obtenerMensajeError('asunto') }}</span>
+              }
+            </div>
+
+            <!-- Mensaje -->
+            <div class="form-group">
+              <label for="mensaje">Mensaje *</label>
+              <textarea
+                id="mensaje"
+                formControlName="mensaje"
+                rows="6"
+                placeholder="Escribe aquí tu mensaje..."
+                [class.error]="tienError('mensaje')"></textarea>
+              <div class="mensaje-info">
+                @if (tienError('mensaje')) {
+                  <span class="mensaje-error">{{ obtenerMensajeError('mensaje') }}</span>
+                } @else {
+                  <span class="contador-caracteres">{{ longitudMensaje }}/500 caracteres</span>
+                }
+              </div>
+            </div>
+
+            <!-- Botón de envío -->
+            <div class="form-actions">
+              <button
+                type="submit"
+                class="btn-enviar"
+                [disabled]="contactForm.invalid">
+                Enviar Solicitud
+              </button>
+            </div>
+
+            <!-- Nota informativa -->
+            <p class="form-note">
+              * Todos los campos son obligatorios. Responderemos a tu solicitud en un plazo máximo de 24-48 horas.
+            </p>
+          </form>
+        </div>
+
+        <!-- Información de contacto -->
+        <div class="info-container">
+          <h2>Otras formas de contacto</h2>
+
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+              <h3>Ubicación</h3>
+              <p>Campus Universitario<br>Edificio Central, Planta Baja<br>28040 Madrid</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-content">
+              <h3>Teléfono</h3>
+              <p>+34 91 123 45 67<br>Lun-Vie: 9:00 - 20:00</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div class="info-content">
+              <h3>Email</h3>
+              <p>info@nexus.com<br>soporte@nexus.com</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">🕐</div>
+            <div class="info-content">
+              <h3>Horario de Atención</h3>
+              <p>
+                Lunes - Viernes: 7:00 - 22:00<br>
+                Sábados: 8:00 - 21:00<br>
+                Domingos: 9:00 - 20:00
+              </p>
+            </div>
+          </div>
+
+          <div class="social-media">
+            <h3>Síguenos en redes sociales</h3>
+            <div class="social-links">
+              <a href="#" class="social-link" title="Facebook">📘</a>
+              <a href="#" class="social-link" title="Instagram">📷</a>
+              <a href="#" class="social-link" title="Twitter">🐦</a>
+              <a href="#" class="social-link" title="LinkedIn">💼</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    } @else {
+      <!-- Mensaje de confirmación -->
+      <div class="confirmacion">
+        <div class="confirmacion-contenido">
+          <div class="confirmacion-icono">✓</div>
+          <h2>¡Solicitud Enviada!</h2>
+          <p class="mensaje-exito">{{ mensajeExito }}</p>
+          <p class="mensaje-adicional">El formulario se reiniciará automáticamente en unos segundos.</p>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+

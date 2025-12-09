@@ -1,0 +1,143 @@
+<!--
+  Template del Landing de Cafetería
+
+  Presenta el servicio de cafetería con hero section, características y llamado a la acción
+  @author Sistema de Cafetería Nexus
+  @date 2025-12-08
+-->
+
+<div class="cafeteria-landing">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Cafetería Nexus</h1>
+      <p class="hero-subtitle">El lugar perfecto para estudiar, trabajar y disfrutar</p>
+      <p class="hero-description">
+        Descubre nuestro espacio multifuncional que combina una cafetería de calidad
+        con zonas de coworking diseñadas especialmente para la comunidad universitaria.
+      </p>
+      <div class="hero-buttons">
+        <a routerLink="/cafeteria/productos" class="btn btn-primary">Ver Productos</a>
+        <a routerLink="/contacto" class="btn btn-secondary">Contactar</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800"
+           alt="Cafetería moderna con zona de estudio">
+    </div>
+  </section>
+
+  <!-- Características -->
+  <section class="features">
+    <div class="container">
+      <h2>¿Por qué elegir Nexus Cafetería?</h2>
+      <div class="features-grid">
+        @for (feature of features; track feature.titulo) {
+          <div class="feature-card">
+            <div class="feature-icon">{{ feature.icon }}</div>
+            <h3>{{ feature.titulo }}</h3>
+            <p>{{ feature.descripcion }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Nuestro Menú -->
+  <section class="menu-preview">
+    <div class="container">
+      <h2>Nuestro Menú</h2>
+      <p class="section-description">
+        Ofrecemos una amplia variedad de productos para acompañar tus horas de estudio
+      </p>
+      <div class="menu-categories">
+        <div class="category-card">
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400"
+               alt="Café">
+          <h3>Cafés</h3>
+          <p>Espresso, Americano, Cappuccino, Latte y más</p>
+        </div>
+        <div class="category-card">
+          <img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400"
+               alt="Bebidas">
+          <h3>Bebidas</h3>
+          <p>Tés, chocolates, zumos naturales y batidos</p>
+        </div>
+        <div class="category-card">
+          <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400"
+               alt="Snacks">
+          <h3>Snacks</h3>
+          <p>Croissants, muffins, sandwiches y más</p>
+        </div>
+      </div>
+      <div class="cta-button">
+        <a routerLink="/cafeteria/productos" class="btn btn-large">Explorar Menú Completo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modalidades de Servicio -->
+  <section class="service-modes">
+    <div class="container">
+      <h2>Modalidades de Servicio</h2>
+      <div class="modes-grid">
+        <div class="mode-card">
+          <div class="mode-icon">🪑</div>
+          <h3>Mesa de Coworking</h3>
+          <p>
+            Recibe tu pedido directamente en tu mesa de trabajo. Perfecto para
+            sesiones largas de estudio sin interrupciones.
+          </p>
+          <ul>
+            <li>WiFi de alta velocidad</li>
+            <li>Enchufes en cada mesa</li>
+            <li>Iluminación adecuada</li>
+            <li>Ambiente tranquilo</li>
+          </ul>
+        </div>
+        <div class="mode-card">
+          <div class="mode-icon">🥤</div>
+          <h3>Recogida en Mostrador</h3>
+          <p>
+            Haz tu pedido y recógelo en nuestro mostrador cuando esté listo.
+            Rápido y conveniente para llevar.
+          </p>
+          <ul>
+            <li>Servicio rápido</li>
+            <li>Para llevar disponible</li>
+            <li>Sin esperas en cola</li>
+            <li>Pedido online</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Horarios -->
+  <section class="schedule">
+    <div class="container">
+      <h2>Horarios de Atención</h2>
+      <div class="schedule-table">
+        @for (item of horarios; track item.dia) {
+          <div class="schedule-row">
+            <span class="day">{{ item.dia }}</span>
+            <span class="hours">{{ item.horario }}</span>
+          </div>
+        }
+      </div>
+      <p class="schedule-note">
+        * Horarios especiales en festivos y períodos de exámenes
+      </p>
+    </div>
+  </section>
+
+  <!-- Call to Action Final -->
+  <section class="final-cta">
+    <div class="container">
+      <h2>¿Listo para disfrutar?</h2>
+      <p>Haz tu primer pedido y descubre por qué somos la cafetería favorita de la universidad</p>
+      <a routerLink="/cafeteria/productos" class="btn btn-cta">Hacer Pedido Ahora</a>
+    </div>
+  </section>
+</div>
+

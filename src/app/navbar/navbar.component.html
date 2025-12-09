@@ -1,9 +1,9 @@
 <nav class="navbar navbar-light bg-white shadow-sm mb-4">
   <div class="container" style="max-width: 1200px; position: relative;">
     <a class="navbar-brand d-flex align-items-center" routerLink="/" (click)="closeMobileMenu()">
-      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="BookStore Logo" class="me-2"
+      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="Nexus Logo" class="me-2"
            style="height: 40px;">
-      <span class="fw-bold fs-4">BookStore</span>
+      <span class="fw-bold fs-4">Nexus</span>
     </a>
 
     <!-- Hamburger / menu toggle button -->
@@ -19,11 +19,17 @@
       <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMobileMenu()">
         Inicio
       </a>
-      <a class="nav-link" routerLink="/buscar" routerLinkActive="active" (click)="closeMobileMenu()">
-        Buscar Libros
+      <a class="nav-link" routerLink="/libros" routerLinkActive="active" (click)="closeMobileMenu()">
+        📚 Libros
+      </a>
+      <a class="nav-link" routerLink="/cafeteria" routerLinkActive="active" (click)="closeMobileMenu()">
+        ☕ Cafetería
+      </a>
+      <a class="nav-link" routerLink="/contacto" routerLinkActive="active" (click)="closeMobileMenu()">
+        ✉️ Contacto
       </a>
       <a class="nav-link" routerLink="/carrito" routerLinkActive="active" (click)="closeMobileMenu()">
-        Carrito
+        🛒 Carrito
         <span *ngIf="(cartItemCount$ | async) as count" class="badge bg-primary ms-1">{{ count }}</span>
       </a>
     </div>
